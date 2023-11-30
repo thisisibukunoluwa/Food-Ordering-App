@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:food_ordering_app/core/routes.dart';
+import 'package:food_ordering_app/features/splash/splash_view.dart';
+import 'package:food_ordering_app/services/navigation_service.dart';
 
 void main() {
   runApp(FoodrApp());
@@ -10,34 +13,17 @@ class FoodrApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(primarySwatch: Colors.blue),
-      home: ScreenUtilInit(
-        minTextAdapt: true,
+    return ScreenUtilInit(
         designSize: Size(393, 852),
-        builder: (context, child) {
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            home: MyHomePage()
-          );
-        },
+        child:  MaterialApp(
+        title: ,
+        theme: ThemeData(primarySwatch: Colors.blue),
+        home: SplashView(),
+        navigatorKey:navigationService.navigatorKey,
       ),
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return  Scaffold(
-      appBar: AppBar(
-        title: Row(),
-      ),
-      body: Placeholder() 
-    );
-  }
-}
 
 
