@@ -1,8 +1,8 @@
 
 import 'package:flutter/material.dart';
 
-class OrderView extends StatelessWidget {
-  const OrderView({super.key});
+class CheckoutView extends StatelessWidget {
+  const CheckoutView({super.key});
 
   @override
   Widget build(BuildContext context) {

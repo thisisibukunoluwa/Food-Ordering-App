@@ -16,7 +16,7 @@ class FoodrApp extends StatelessWidget {
     return ScreenUtilInit(
         designSize: Size(393, 852),
         child:  MaterialApp(
-        title: ,
+        title: 'Foodr',
         theme: ThemeData(primarySwatch: Colors.blue),
         home: SplashView(),
         navigatorKey:navigationService.navigatorKey,

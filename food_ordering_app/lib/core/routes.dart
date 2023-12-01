@@ -1,6 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:food_ordering_app/features/splash/splash_view.dart';
+
+import '../features/bag/cart_view.dart';
+import '../features/checkout/checkout_view.dart';
+import '../features/confirmation/confirmation_view.dart';
+import '../features/home/home_view.dart';
+import '../features/orders/order_view.dart';
+import '../features/profile/profile_view.dart';
 
 class Routes {
+  static const home = '/home';
+  static const splash = '/splash';
   static const confirmation = '/confirmation';
   static const productListing = '/product-listing';
   static const checkout = '/checkout';
@@ -12,6 +22,8 @@ class Routes {
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
+      case splash:
+        return MaterialPageRoute(builder: (_) => SplashView());
       case confirmation:
         return MaterialPageRoute(builder: (_) => ConfirmationView());
       case orders:
@@ -22,14 +34,15 @@ class Routes {
         return MaterialPageRoute(builder: (_) => const CheckoutView());
       case cart:
         return MaterialPageRoute(builder: (_) => const CartView());
-      case productDetails:
-        final book = settings.arguments as Order;
-        return MaterialPageRoute(
-          builder: (_) => OrderDetailsView(order: order),
-        );
+      case home:
+        return MaterialPageRoute(builder: (_) => const HomeView());
+      // case productDetails:
+      //   final book = settings.arguments as Order;
+      //   return MaterialPageRoute(
+      //     builder: (_) => OrderDetailsView(order: order),
+      //   );
       case profile:
         return MaterialPageRoute(builder: (_) => const ProfileView());
-
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(
@@ -41,6 +54,3 @@ class Routes {
     }
   }
 }
-
-
-
