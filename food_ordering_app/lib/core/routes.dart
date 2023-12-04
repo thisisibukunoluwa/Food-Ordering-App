@@ -23,11 +23,11 @@ class Routes {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case splash:
-        return MaterialPageRoute(builder: (_) => SplashView());
+        return MaterialPageRoute(builder: (_) => const SplashView());
       case confirmation:
-        return MaterialPageRoute(builder: (_) => ConfirmationView());
+        return MaterialPageRoute(builder: (_) => const ConfirmationView());
       case orders:
-        return MaterialPageRoute(builder: (_) => OrderView());
+        return MaterialPageRoute(builder: (_) => const OrderView());
       case profile:
         return MaterialPageRoute(builder: (_) => const ProfileView());
       case checkout:
@@ -41,8 +41,6 @@ class Routes {
       //   return MaterialPageRoute(
       //     builder: (_) => OrderDetailsView(order: order),
       //   );
-      case profile:
-        return MaterialPageRoute(builder: (_) => const ProfileView());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(
