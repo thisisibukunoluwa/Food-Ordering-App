@@ -19,7 +19,7 @@ class PreferencesUtils {
     return prefs.setString(key, value);
   }
 
-  static bool? getBool(String key, [bool defValue = true]) {
+  static bool? getBool(String key, [bool defValue = false]) {
     return _prefsInstance?.getBool(key) ?? defValue;
   }
 

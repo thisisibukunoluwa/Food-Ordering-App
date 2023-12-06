@@ -22,10 +22,10 @@ class _StartupViewState extends State<StartupView> {
   @override
   Widget build(BuildContext context) {
     bool? isFirstLaunch = PreferencesUtils.getBool('firstlaunch');
-    // print(isFirstLaunch!);
     // PreferencesUtils.clear();
+    // print(isFirstLaunch!);
     if (isFirstLaunch!) {
-      PreferencesUtils.setBool('firstlaunch', false);
+      // PreferencesUtils.setBool('firstlaunch', false);
       return SplashView();
     } else {
       return HomeView();

@@ -6,9 +6,13 @@ class SplashView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Center(
-        child: Text("I am the splash view"),
-      ),
+      body:SafeArea(
+        child: Column(
+          children: [
+            
+          ],
+        )
+      )
     );
   }
 }
