@@ -35,6 +35,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_screenutil: ^5.9.0
   shared_preferences: ^2.2.2
+  flutter_svg: ^2.0.9
+  flutter_rating_bar: ^4.0.1
 
 dev_dependencies:
   flutter_test:
@@ -67,7 +69,7 @@ flutter:
     - assets/sides/
     - assets/premiumpizza/
     - assets/images/
-
+    - assets/svgs/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
@@ -79,10 +81,10 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  fonts:
-    - family: FoodrIcons
-      fonts:
-        - asset: assets/fonts/FoodrIcons.ttf
+  # fonts:
+  #   - family: FoodrIcons
+  #     fonts:
+  #       - asset: assets/fonts/FoodrIcons.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

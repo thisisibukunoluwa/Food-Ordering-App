@@ -131,6 +131,19 @@ class $AssetsSidesGen {
   List<AssetGenImage> get values => [chickenwings, frenchfries, salad];
 }
 
+class $AssetsSvgsGen {
+  const $AssetsSvgsGen();
+
+  /// File path: assets/svgs/Profile.svg
+  String get profile => 'assets/svgs/Profile.svg';
+
+  /// File path: assets/svgs/location-minus.svg
+  String get locationMinus => 'assets/svgs/location-minus.svg';
+
+  /// List of all assets
+  List<String> get values => [profile, locationMinus];
+}
+
 class Assets {
   Assets._();
 
@@ -141,6 +154,7 @@ class Assets {
       $AssetsPopularrestaurantsGen();
   static const $AssetsPremiumpizzaGen premiumpizza = $AssetsPremiumpizzaGen();
   static const $AssetsSidesGen sides = $AssetsSidesGen();
+  static const $AssetsSvgsGen svgs = $AssetsSvgsGen();
 }
 
 class AssetGenImage {
