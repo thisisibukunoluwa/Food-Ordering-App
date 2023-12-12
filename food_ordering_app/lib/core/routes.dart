@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:food_ordering_app/features/home/models/restaurant_model.dart';
+import 'package:food_ordering_app/features/productlisting/productlisting_view.dart';
 import 'package:food_ordering_app/features/splash/splash_view.dart';
 
 import '../features/bag/cart_view.dart';
@@ -30,6 +32,11 @@ class Routes {
         return MaterialPageRoute(builder: (_) => const OrderView());
       case profile:
         return MaterialPageRoute(builder: (_) => const ProfileView());
+      case productListing:
+        final restaurant = settings.arguments as RestaurantModel; 
+
+        return MaterialPageRoute(builder: (_) => ProductslistingView(restaurant: restaurant));
+        
       case checkout:
         return MaterialPageRoute(builder: (_) => const CheckoutView());
       case cart:

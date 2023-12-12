@@ -134,14 +134,49 @@ class $AssetsSidesGen {
 class $AssetsSvgsGen {
   const $AssetsSvgsGen();
 
-  /// File path: assets/svgs/Profile.svg
-  String get profile => 'assets/svgs/Profile.svg';
+  /// File path: assets/svgs/bag-active.svg
+  String get bagActive => 'assets/svgs/bag-active.svg';
+
+  /// File path: assets/svgs/bag.svg
+  String get bag => 'assets/svgs/bag.svg';
+
+  /// File path: assets/svgs/home-active.svg
+  String get homeActive => 'assets/svgs/home-active.svg';
+
+  /// File path: assets/svgs/home.svg
+  String get home => 'assets/svgs/home.svg';
 
   /// File path: assets/svgs/location-minus.svg
   String get locationMinus => 'assets/svgs/location-minus.svg';
 
+  /// File path: assets/svgs/orders-active.svg
+  String get ordersActive => 'assets/svgs/orders-active.svg';
+
+  /// File path: assets/svgs/orders.svg
+  String get orders => 'assets/svgs/orders.svg';
+
+  /// File path: assets/svgs/profile-active.svg
+  String get profileActive => 'assets/svgs/profile-active.svg';
+
+  /// File path: assets/svgs/profile.svg
+  String get profile => 'assets/svgs/profile.svg';
+
+  /// File path: assets/svgs/user-profile.svg
+  String get userProfile => 'assets/svgs/user-profile.svg';
+
   /// List of all assets
-  List<String> get values => [profile, locationMinus];
+  List<String> get values => [
+        bagActive,
+        bag,
+        homeActive,
+        home,
+        locationMinus,
+        ordersActive,
+        orders,
+        profileActive,
+        profile,
+        userProfile
+      ];
 }
 
 class Assets {
