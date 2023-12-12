@@ -19,7 +19,7 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-   int currentPageIndex = 0;
+  int currentPageIndex = 0;
 
   void _changePage(int index) {
     setState(() {
@@ -40,16 +40,17 @@ class _HomeViewState extends State<HomeView> {
         ][currentPageIndex],
         bottomNavigationBar: DotNavigationBar(
           marginR: EdgeInsets.symmetric(horizontal: 20),
-          boxShadow : const [
-      BoxShadow(
-        color: Color.fromARGB(27, 37, 35, 35),
-        spreadRadius: 1,
-        blurRadius:5,
-        offset: Offset(0, 0), // changes position of shadow
-      ),],
+          boxShadow: const [
+            BoxShadow(
+              color: Color.fromARGB(27, 37, 35, 35),
+              spreadRadius: 1,
+              blurRadius: 5,
+              offset: Offset(0, 0), // changes position of shadow
+            ),
+          ],
           borderRadius: 16,
           currentIndex: currentPageIndex,
-          onTap:_changePage,
+          onTap: _changePage,
           // dotIndicatorColor: Colors.black,
           items: [
             /// Home
@@ -60,21 +61,21 @@ class _HomeViewState extends State<HomeView> {
               selectedColor: Colors.transparent,
             ),
             DotNavigationBarItem(
-              icon:  SvgPicture.asset(currentPageIndex == 1
+              icon: SvgPicture.asset(currentPageIndex == 1
                   ? Assets.svgs.bagActive
                   : Assets.svgs.bag),
               selectedColor: Colors.transparent,
             ),
 
             DotNavigationBarItem(
-              icon:  SvgPicture.asset(currentPageIndex == 2
+              icon: SvgPicture.asset(currentPageIndex == 2
                   ? Assets.svgs.ordersActive
                   : Assets.svgs.orders),
               selectedColor: Colors.transparent,
             ),
 
             DotNavigationBarItem(
-              icon:  SvgPicture.asset(currentPageIndex == 3
+              icon: SvgPicture.asset(currentPageIndex == 3
                   ? Assets.svgs.profileActive
                   : Assets.svgs.profile),
               selectedColor: Colors.transparent,
