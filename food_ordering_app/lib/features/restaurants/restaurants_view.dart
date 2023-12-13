@@ -153,7 +153,7 @@ class _MainBody extends StatelessWidget {
               ],
             ),
           ),
-          // _ProductsList(),
+          _ProductsList(),
         ],
       ),
     );

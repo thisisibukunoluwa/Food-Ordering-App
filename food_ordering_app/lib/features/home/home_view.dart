@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:food_ordering_app/features/bag/cart_view.dart';
-import 'package:food_ordering_app/features/home/models/restaurant_model.dart';
 import 'package:food_ordering_app/features/orders/order_view.dart';
 import 'package:food_ordering_app/features/profile/profile_view.dart';
 import 'package:food_ordering_app/features/restaurants/restaurants_view.dart';
-import 'package:food_ordering_app/widgets/custom_button.dart';
-import 'package:food_ordering_app/widgets/restaurant_card.dart';
 import 'package:dot_navigation_bar/dot_navigation_bar.dart';
 import '../../gen/assets.gen.dart';
 

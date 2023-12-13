@@ -33,10 +33,9 @@ class Routes {
       case profile:
         return MaterialPageRoute(builder: (_) => const ProfileView());
       case productListing:
-        final restaurant = settings.arguments as RestaurantModel; 
+        final restaurant = settings.arguments as RestaurantModel;
+        return MaterialPageRoute(builder: (_) => ProductslistingView(restaurant: restaurant,));
 
-        return MaterialPageRoute(builder: (_) => ProductslistingView(restaurant: restaurant));
-        
       case checkout:
         return MaterialPageRoute(builder: (_) => const CheckoutView());
       case cart:
