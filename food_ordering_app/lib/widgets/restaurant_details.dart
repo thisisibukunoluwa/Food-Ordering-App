@@ -6,11 +6,12 @@ import '../features/home/models/restaurant_model.dart';
 import '../gen/assets.gen.dart';
 
 class RestaurantDetails extends StatelessWidget {
-  const RestaurantDetails({
-    super.key,
+   const RestaurantDetails({
+     Key? key,
     required this.restaurant,
-  });
-
+    this.isDetails = false,
+  }) : super(key: key);
+  final bool isDetails;
   final RestaurantModel restaurant;
 
   @override
@@ -21,9 +22,22 @@ class RestaurantDetails extends StatelessWidget {
         SizedBox(
           height: 10,
         ),
-        Text(
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+              Text(
           restaurant.title,
           style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20.sp),
+            ),
+            if (isDetails)  
+            Text(
+              '${restaurant.deliveryTime} delivery', style:
+              TextStyle(fontWeight: FontWeight.w600, fontSize: 13.sp
+            ))
+          ],
+        ),
+        SizedBox(
+          height: 5,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -35,12 +49,14 @@ class RestaurantDetails extends StatelessWidget {
                     restaurant.rating,
                     (_) => const Icon(
                           Icons.star_rate_rounded,
+                          size: 15,
                           color: Color(0xFFFFD700),
                         )),
                 ...List.generate(
                     5 - restaurant.rating,
                     (_) => const Icon(
                           Icons.star_rate_rounded,
+                          size: 15,
                           color: Color(0xFFC4C4C4),
                         )),
               ],
