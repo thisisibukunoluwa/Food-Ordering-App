@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_ordering_app/features/home/models/restaurant_model.dart';
+import 'package:food_ordering_app/models/restaurant_model.dart';
 import 'package:food_ordering_app/features/productlisting/productlisting_view.dart';
 import 'package:food_ordering_app/features/splash/splash_view.dart';
 

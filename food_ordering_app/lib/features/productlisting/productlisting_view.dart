@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:food_ordering_app/features/home/models/restaurant_model.dart';
+import 'package:food_ordering_app/models/restaurant_model.dart';
 import 'package:food_ordering_app/services/navigation_service.dart';
 import 'package:food_ordering_app/utils/formatMenuCategory.dart';
 import 'package:food_ordering_app/widgets/glassmorphism.dart';
@@ -72,7 +72,7 @@ class _ProductslistingViewState extends State<ProductslistingView>
             child: SizedBox(
                 height: 30.h,
                 child: TabBar(
-                    onTap: () => _scrollToSection(key),
+                    // onTap: () => _scrollToSection(key),
                     isScrollable: true,
                     labelColor: Colors.black,
                     unselectedLabelColor: Colors.grey,
@@ -82,9 +82,8 @@ class _ProductslistingViewState extends State<ProductslistingView>
                       ...MenuItemCategory.values.map((category) => Tab(
                             text: convertCamelCaseToWords(category.name),
                           ))
-                    ]))
-        ),
-        // 
+                    ]))),
+        //
       ],
     ));
   }
@@ -141,8 +140,19 @@ _scrollToSection(GlobalKey key) {
   }
 }
 
+// we'll complete the app normally but then we'll create another branch , that uses the data as mock data with futures to simulate network delay , then the third one will be a whole refactoring with riverpod
 
-// we'll complete the app normally but then we'll create another branch , that uses the data as mock data with futures to simulate network delay , then the third one will be a whole refactoring with riverpod 
+//restaurant - menu
 
+//TODO
 
-//restaurant - menu 
+// GET the restaurant class that we have and convert it to json, or mutate the json we have from chatgpt
+
+// deserialize so we are able to access it , like its from a nromal network server
+
+// add a service and repository and an artificial Future,delay to simulate network delay
+
+// add error handling and loading state
+
+// add the viewModel way from our notion , that will be our state management - using only ValueNotifiers 
+

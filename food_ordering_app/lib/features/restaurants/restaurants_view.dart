@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:food_ordering_app/features/bag/cart_view.dart';
-import 'package:food_ordering_app/features/home/models/restaurant_model.dart';
+import 'package:food_ordering_app/models/restaurant_model.dart';
 import 'package:food_ordering_app/features/orders/order_view.dart';
 import 'package:food_ordering_app/features/profile/profile_view.dart';
 import 'package:food_ordering_app/widgets/custom_button.dart';
@@ -97,7 +97,8 @@ class _ProductsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final restaurants = RestaurantModel.restaurants;
+    // we will actually get the restaurant data fro a viewmodel 
+    final restaurants = ;
 
     List<Widget> restaurantCards = restaurants.map((restaurant) {
       return Center(

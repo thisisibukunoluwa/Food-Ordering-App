@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_ordering_app/core/routes.dart';
-import 'package:food_ordering_app/features/home/models/restaurant_model.dart';
+import 'package:food_ordering_app/models/restaurant_model.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:food_ordering_app/gen/assets.gen.dart';
 import 'dart:math';

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../features/home/models/restaurant_model.dart';
+import '../models/restaurant_model.dart';
 import '../gen/assets.gen.dart';
 
 class RestaurantDetails extends StatelessWidget {
@@ -46,14 +46,14 @@ class RestaurantDetails extends StatelessWidget {
             Row(
               children: [
                 ...List.generate(
-                    restaurant.rating,
+                    restaurant.rating.toInt(),
                     (_) => const Icon(
                           Icons.star_rate_rounded,
                           size: 15,
                           color: Color(0xFFFFD700),
                         )),
                 ...List.generate(
-                    5 - restaurant.rating,
+                    5 - restaurant.rating.toInt(),
                     (_) => const Icon(
                           Icons.star_rate_rounded,
                           size: 15,

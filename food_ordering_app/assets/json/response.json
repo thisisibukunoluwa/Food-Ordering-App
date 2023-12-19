@@ -1,0 +1,170 @@
+
+
+
+
+
+{
+  
+  "restaurants": [
+    {
+      "title": "The Pizza Place",
+      "image": "Assets.popularrestaurants.pizzaplace.path",
+      "distance": 2,
+      "rating": 5,
+      "deliveryTime": "20 to 30 mins",
+      "menu": [
+        {
+          "categoryName": "Combo Deals",
+          "meals": [
+            {
+              "title": "King's deal",
+              "description": "Any medium classic Pizza + a small pizza and a pet drink",
+              "price": 20.34,
+              "image": "https://media.istockphoto.com/id/1179675467/photo/glass-of-coke-and-pizza.jpg"
+            }
+          ]
+        },
+        {
+          "categoryName": "Classic Pizza",
+          "meals": [
+            {
+              "title": "BBQ Chicken",
+              "description": "Pizza coated with BBQ sauce, cheese and grilled chicken",
+              "price": 12.99,
+              "image": "https://images.pexels.com/photos/825661/pexels-photo-825661.jpeg"
+            },
+            {
+              "title": "BBQ Beef",
+              "description": "Pizza coated with BBQ sauce, cheese and grilled chicken",
+              "price": 12.89,
+              "image": "https://images.pexels.com/photos/3343626/pexels-photo-3343626.jpeg"
+            },
+            {
+              "title": "Veggie Supreme",
+              "description": "Pizza coated with tomato sauce, cheese and vegetable toppings",
+              "price": 13.0,
+              "image": "https://images.pexels.com/photos/2147491/pexels-photo-2147491.jpeg"
+            }
+          ]
+        },
+        {
+          "categoryName": "Premium Pizza",
+          "meals": [
+            {
+              "title": "BBQ Mega",
+              "description": "Any medium classic pizza + a chicken pizza + a pet drink",
+              "price": 12.99,
+              "image": "https://media.istockphoto.com/id/1179675467/photo/glass-of-coke-and-pizza.jpg"
+            },
+            {
+              "title": "Chicken Bali",
+              "description": "Tomato sauce, cheese, grilled chicken, pineapple & mushrooms",
+              "price": 12.89,
+              "image": "https://media.istockphoto.com/id/1349383878/photo/hawaiian-pizza-with-ham-and-pineapple.jpg"
+            },
+            {
+              "title": "Extravaganza",
+              "description": "Tomato sauce, cheese, pepper, pepperoni, beef, onions & olives",
+              "price": 13.0,
+              "image": "https://images.pexels.com/photos/5792328/pexels-photo-5792328.jpeg"
+            }
+          ]
+        },
+        {
+          "categoryName": "Sides",
+          "meals": [
+            {
+              "title": "Chicken Wings",
+              "description": "Choose between 6pcs, 8pcs, 12pcs",
+              "price": 6.45,
+              "image": "https://media.istockphoto.com/id/835903320/photo/baked-chicken-wings-with-sesame-seeds-and-sweet-chili-sauce-on-white-wooden-board.jpg?s=612x612&w=0&k=20&c=SH8ZCkEKuWD_wxulpntIJ0uD4yRnUf9UXovQwSwrmmA="
+            },
+            {
+              "title": "French Fries",
+              "description": "Choose between large, extra large, and regular",
+              "price": 5.5,
+              "image": "https://images.pexels.com/photos/1893556/pexels-photo-1893556.jpeg"
+            }
+          ]
+        },
+        {
+          "categoryName": "Drinks",
+          "meals": [
+            {
+              "title": "Coke",
+              "description": "Choose between 35cl, 50cl and 150cl",
+              "price": 3.45,
+              "image": "https://images.pexels.com/photos/50593/coca-cola-cold-drink-soft-drink-coke-50593.jpeg"
+            },
+            {
+              "title": "Sprite",
+              "description": "Choose between 35cl, 50cl and 150cl",
+              "price": 3.45,
+              "image": "https://images.pexels.com/photos/4161715/pexels-photo-4161715.jpeg"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Sweet Scoops",
+      "image": "Assets.popularrestaurants.icecreamfactory.path",
+      "distance": 2,
+      "rating": 5,
+      "deliveryTime": "15 to 25 mins",
+      "menu": [
+        {
+          "categoryName": "Special Sundae",
+          "meals": [
+            {
+              "title": "Royal Delight",
+              "description": "Vanilla ice cream with caramel syrup, nuts, and whipped cream",
+              "price": 8.99,
+              "image": "https://images.pexels.com/photos/1739347/pexels-photo-1739347.jpeg"
+            }
+          ]
+        },
+        {
+          "categoryName": "Classic Flavors",
+          "meals": [
+            {
+              "title": "Chocolate Lover's",
+              "description": "Rich chocolate ice cream with chocolate chunks and fudge",
+              "price": 6.99,
+              "image": "https://images.pexels.com/photos/5061254/pexels-photo-5061254.jpeg"
+            },
+            {
+              "title": "Strawberry Bliss",
+              "description": "Creamy strawberry ice cream with fresh strawberries",
+              "price": 7.49,
+              "image": "https://images.pexels.com/photos/2161649/pexels-photo-2161649.jpeg"
+            },
+            {
+              "title": "Vanilla Dream",
+              "description": "Smooth vanilla ice cream with vanilla bean specks",
+              "price": 6.49,
+              "image": "https://images.pexels.com/photos/161420/ice-cream-cone-melting-hot-ice-cream-scoop-161420.jpeg"
+            }
+          ]
+        },
+        {
+          "categoryName": "Premium Creations",
+          "meals": [
+            {
+              "title": "Caramel Crunch Deluxe",
+              "description": "Caramel ice cream with toffee pieces and chocolate swirls",
+              "price": 9.49,
+              "image": "https://images.pexels.com/photos/6025810/pexels-photo-6025810.jpeg"
+            },
+            {
+              "title": "Mint Chocolate Fantasy",
+              "description": "Mint chocolate chip ice cream with chocolate fudge",
+              "price": 8.99,
+              "image": "https://images.pexels.com/photos/16976667/pexels-photo-16976667/free-photo-of-slice-of-chocolate-cake-with-whipped-cream-topping-decorated-with-strawberry-and-cherry.jpeg"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
