@@ -52,10 +52,7 @@ class CartListViewModel {
 
   /// default values
   final cartProductsNotifier = CartListValueNotifier(<CartProduct>[
-    CartProduct(product: Product(id: '0', price: .50, title: 'Corek 0')),
-    CartProduct(product: Product(id: '1', price: .60, title: 'Corek 1')),
-    CartProduct(product: Product(id: '3', price: .80, title: 'Corek 3')),
-    CartProduct(product: Product(id: '4', price: .90, title: 'Corek 4')),
+    CartProduct(product: Product("1", image: "images.pexels.com", title:"shirt", price: 23.00, quantity: 34)),
   ]);
 
   void addToCart(CartProduct cartProduct) {

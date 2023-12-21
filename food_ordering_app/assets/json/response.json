@@ -1,10 +1,4 @@
-
-
-
-
-
 {
-  
   "restaurants": [
     {
       "title": "The Pizza Place",
@@ -107,7 +101,7 @@
       ]
     },
     {
-      "title": "Sweet Scoops",
+      "title": "Ice Cream Factory",
       "image": "Assets.popularrestaurants.icecreamfactory.path",
       "distance": 2,
       "rating": 5,
@@ -161,10 +155,151 @@
               "description": "Mint chocolate chip ice cream with chocolate fudge",
               "price": 8.99,
               "image": "https://images.pexels.com/photos/16976667/pexels-photo-16976667/free-photo-of-slice-of-chocolate-cake-with-whipped-cream-topping-decorated-with-strawberry-and-cherry.jpeg"
+            },
+            {
+              "title": "Double Berry Extravaganza",
+              "description": "Mixed berry ice cream with berry swirls and fruit pieces",
+              "price": 9.99,
+              "image": "https://www.pexels.com/photo/tasty-dessert-with-berries-and-jam-4227013/"
+            }
+          ]
+        },
+        {
+          "categoryName": "Toppings",
+          "meals": [
+            {
+              "title": "Sprinkles Galore",
+              "description": "Assorted colorful sprinkles to top off your ice cream",
+              "price": 1.5,
+              "image": "https://images.pexels.com/photos/2638026/pexels-photo-2638026.jpeg"
+            },
+            {
+              "title": "Hot Fudge Drizzle",
+              "description": "Warm chocolate fudge sauce to pour over your ice cream",
+              "price": 2.0,
+              "image": "https://images.pexels.com/photos/8732739/pexels-photo-8732739.jpeg"
+            }
+          ]
+        },
+        {
+          "categoryName": "Beverages",
+          "meals": [
+            {
+              "title": "Iced Caramel Latte",
+              "description": "Chilled caramel latte to accompany your sweet treat",
+              "price": 4.99,
+              "image": "https://images.pexels.com/photos/3151778/pexels-photo-3151778.jpeg"
+            },
+            {
+              "title": "Fruit Punch Cooler",
+              "description": "Refreshing fruit punch cooler to quench your thirst",
+              "price": 3.99,
+              "image": "https://images.pexels.com/photos/669732/pexels-photo-669732.jpeg"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Coffee",
+      "image": "Assets.popularrestaurants.coffeehouse.path",
+      "distance": 2,
+      "rating": 4.5,
+      "deliveryTime": "15 to 20 mins",
+      "menu": [
+        {
+          "categoryName": "Signature Coffees",
+          "meals": [
+            {
+              "title": "Caramel Macchiato",
+              "description": "Espresso with steamed milk and caramel drizzle",
+              "price": 4.99,
+              "image": "pexels-photo-19427555/free-photo-of-mini-cakes-and-cappuccino-decorated-with-latte-art-by-christmas-tree.jpeg"
+            },
+            {
+              "title": "Hazelnut Latte",
+              "description": "Rich espresso with steamed milk and hazelnut flavor",
+              "price": 5.49,
+              "image": "https://images.pexels.com/photos/2396220/pexels-photo-2396220.jpeg"
+            }
+          ]
+        },
+        {
+          "categoryName": "Classic Brews",
+          "meals": [
+            {
+              "title": "Americano",
+              "description": "Espresso with hot water for a bold and smooth flavor",
+              "price": 3.99,
+              "image": "https://images.pexels.com/photos/4195612/pexels-photo-4195612.jpeg"
+            },
+            {
+              "title": "Cappuccino",
+              "description": "Equal parts espresso, steamed milk, and frothed milk",
+              "price": 4.49,
+              "image": "https://images.pexels.com/photos/350478/pexels-photo-350478.jpeg"
+            },
+            {
+              "title": "Mocha",
+              "description": "Espresso with steamed milk, chocolate syrup, and whipped cream",
+              "price": 4.79,
+              "image": "https://images.pexels.com/photos/3361170/pexels-photo-3361170.jpeg"
+            }
+          ]
+        },
+        {
+          "categoryName": "Specialty Blends",
+          "meals": [
+            {
+              "title": "Iced Vanilla Latte",
+              "description": "Chilled espresso with cold milk and vanilla flavor",
+              "price": 5.29,
+              "image": "https://images.pexels.com/photos/7819309/pexels-photo-7819309.jpeg"
+            },
+            {
+              "title": "Toffee Nut Frappuccino",
+              "description": "Blended coffee with toffee nut syrup, milk, and ice",
+              "price": 5.99,
+              "image": "https://images.pexels.com/photos/8743862/pexels-photo-8743862.jpeg"
+            }
+          ]
+        },
+        {
+          "categoryName": "Pastries",
+          "meals": [
+            {
+              "title": "Croissant",
+              "description": "Buttery and flaky pastry perfect for a coffee pairing",
+              "price": 2.99,
+              "image": "https://images.pexels.com/photos/2135/food-france-morning-breakfast.jpg"
+            },
+            {
+              "title": "Blueberry Muffin",
+              "description": "Moist muffin with bursts of blueberries",
+              "price": 3.49,
+              "image": "https://images.pexels.com/photos/312418/pexels-photo-312418.jpeg"
+            }
+          ]
+        },
+        {
+          "categoryName": "Teas",
+          "meals": [
+            {
+              "title": "Chai Latte",
+              "description": "Spiced tea with steamed milk for a comforting blend",
+              "price": 4.49,
+              "image": "https://images.pexels.com/photos/312418/pexels-photo-312418.jpeg"
+            },
+            {
+              "title": "Green Tea",
+              "description": "Classic green tea for a refreshing experience",
+              "price": 3.99,
+              "image": "https://images.pexels.com/photos/1417945/pexels-photo-1417945.jpeg"
             }
           ]
         }
       ]
     }
+
   ]
 }

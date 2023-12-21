@@ -1,11 +1,16 @@
 import 'package:flutter/foundation.dart';
 import 'package:food_ordering_app/repositories/restaurant_repository.dart';
+
+import '../models/api_response.dart';
+import '../services/network/http_service.dart';
 // add logging framework 
 
 
 
 
-class RestaurantViewModel extends ValueNotifier<List<CartProduct>>> {
+class RestaurantViewModel extends ChangeNotifier {
+
+  final httpService = HttpService();
 
   ApiResponse _apiResponse = ApiResponse.loading('');
 
@@ -13,19 +18,16 @@ class RestaurantViewModel extends ValueNotifier<List<CartProduct>>> {
   ApiResponse get response {
     return _apiResponse;
   }
-
   
-  /// Call the media service and gets the data of requested media data of
-  Future<void> fetchMediaData(String value) async {
+  Future<void> fetchRestaurants(String value) async {
     try {
-      List<> mediaList = await RestaurantsRepository(networkService: networkService)
-      _apiResponse = ApiResponse.completed(mediaList);
+
+      var list = await RestaurantsRepository(networkService: httpService);
+      _apiResponse = ApiResponse.completed(list);
     } catch (e) {
       _apiResponse = ApiResponse.error(e.toString());
       print(e);
     }
     notifyListeners();
   }
-
-
 }

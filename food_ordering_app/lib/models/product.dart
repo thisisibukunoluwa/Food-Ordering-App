@@ -9,7 +9,7 @@ class Product {
   final String id;
   final String image;
   final String title;
-  final String price;
+  final double price;
   final int quantity;
   bool isAddedToCart;
 

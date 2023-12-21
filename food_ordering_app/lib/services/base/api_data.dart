@@ -7,7 +7,7 @@ class APIData {
 
 //one endpoint tht gives list of restaurants
 
-// it doesnt have to be a differnt endpoint 
+// it doesnt have to be a different endpoint 
 
 // on endpoint that gives individual restaurant data 
 
