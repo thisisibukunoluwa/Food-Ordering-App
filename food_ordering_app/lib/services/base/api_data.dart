@@ -5,7 +5,7 @@ class APIData {
   // its like when we construct a URI to a resource and it returns the reosource we want 
 }
 
-//one endpoint tht gives list of restaurants
+//one endpoint that gives list of restaurants
 
 // it doesnt have to be a different endpoint 
 

@@ -5,10 +5,13 @@ import 'package:food_ordering_app/features/bag/cart_view.dart';
 import 'package:food_ordering_app/models/restaurant_model.dart';
 import 'package:food_ordering_app/features/orders/order_view.dart';
 import 'package:food_ordering_app/features/profile/profile_view.dart';
+import 'package:food_ordering_app/providers/view_model_provider.dart';
+import 'package:food_ordering_app/viewmodels/restaurant_view_model.dart';
 import 'package:food_ordering_app/widgets/custom_button.dart';
 import 'package:food_ordering_app/widgets/restaurant_card.dart';
 import 'package:dot_navigation_bar/dot_navigation_bar.dart';
 import '../../gen/assets.gen.dart';
+import '../../models/api_response.dart';
 
 class RestaurantsView extends StatefulWidget {
   const RestaurantsView({super.key});
@@ -28,7 +31,7 @@ class _RestaurantsViewState extends State<RestaurantsView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       body: _MainBody(),
@@ -46,9 +49,9 @@ class _SearchBar extends StatelessWidget {
     return TextFormField(
         decoration: InputDecoration(
             filled: true,
-            fillColor: Color(0xFFF5F4F8),
+            fillColor: const Color(0xFFF5F4F8),
             hintText: 'Search for a vendor or product',
-            prefixIcon: Icon(Icons.search),
+            prefixIcon: const Icon(Icons.search),
             border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(22.0),
                 borderSide: BorderSide.none)),
@@ -97,27 +100,45 @@ class _ProductsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // we will actually get the restaurant data fro a viewmodel 
-    final restaurants = ;
+    // we will actually get the restaurant data from a viewmodel
+    final restaurants = ViewModelProvider.read<RestaurantViewModel>(context);
 
-    List<Widget> restaurantCards = restaurants.map((restaurant) {
-      return Center(
-        child: RestaurantCard(restaurant: restaurant),
-      );
-    }).toList();
+    var apiResponse = restaurants.response;
+    print(restaurants.fetchRestaurants());
+    // print(apiResponse.data);
 
-    return SizedBox(
-      height: 600,
-      child: ListView(
-        children: [
-          ...restaurantCards,
-          CustomButton(
-              buttonText: "View all Restaurants",
-              onPressed: () {},
-              color: Colors.white)
-        ],
-      ),
-    );
+    // List<Widget> restaurantCards = apiResponse.data.map((restaurant) {
+    //   return Center(
+    //     child: RestaurantCard(restaurant: restaurant),
+    //   );
+    // }).toList();
+
+    switch (apiResponse.status) {
+      case Status.LOADING:
+        return const Center(child: CircularProgressIndicator());
+      case Status.COMPLETED:
+        return SizedBox(
+          height: 600,
+          child: ListView(
+            children: [
+              // ...restaurantCards,
+              CustomButton(
+                  buttonText: "View all Restaurants",
+                  onPressed: () {},
+                  color: Colors.white)
+            ],
+          ),
+        );
+      case Status.ERROR:
+        return const Center(
+          child: Text('An unknown error occurred!!!'),
+        );
+      case Status.INITIAL:
+      default:
+        return const Center(
+          child: Text('Search the song by Artist'),
+        );
+    }
   }
 }
 
@@ -136,7 +157,7 @@ class _MainBody extends StatelessWidget {
           ),
           const _SearchBar(),
           Padding(
-            padding: EdgeInsets.symmetric(vertical: 20),
+            padding: const EdgeInsets.symmetric(vertical: 20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -147,14 +168,14 @@ class _MainBody extends StatelessWidget {
                       fontSize: 17.sp,
                       color: Colors.black),
                 ),
-                Text(
+                const Text(
                   "View all",
                   style: TextStyle(color: Color(0xFF797D82)),
                 )
               ],
             ),
           ),
-          _ProductsList(),
+          const _ProductsList(),
         ],
       ),
     );

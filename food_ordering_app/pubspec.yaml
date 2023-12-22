@@ -38,6 +38,8 @@ dependencies:
   flutter_svg: ^2.0.9
   flutter_rating_bar: ^4.0.1
   dot_navigation_bar: ^1.0.2
+  skeletonizer: ^0.8.0
+  logging: ^1.2.0
 
 dev_dependencies:
   flutter_test:
@@ -71,6 +73,7 @@ flutter:
     - assets/premiumpizza/
     - assets/images/
     - assets/svgs/
+    - assets/json/response.json
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

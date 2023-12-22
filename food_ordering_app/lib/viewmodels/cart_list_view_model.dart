@@ -51,9 +51,7 @@ class CartListViewModel {
   final cartCountNotifier = ValueNotifier<int>(0);
 
   /// default values
-  final cartProductsNotifier = CartListValueNotifier(<CartProduct>[
-    CartProduct(product: Product("1", image: "images.pexels.com", title:"shirt", price: 23.00, quantity: 34)),
-  ]);
+  final cartProductsNotifier = CartListValueNotifier(<CartProduct>[]);
 
   void addToCart(CartProduct cartProduct) {
     cartProductsNotifier.addProductToCart(cartProduct);
@@ -77,3 +75,5 @@ class CartListViewModel {
     return res;
   }
 }
+
+

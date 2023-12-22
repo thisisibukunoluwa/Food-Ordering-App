@@ -8,10 +8,12 @@ class HttpService implements INetworkService {
   @override
   Future<String> get(String uri) async {
     try {
-      // to simulate network latency 
+      // to simulate network latency
       Future.delayed(const Duration(milliseconds: 300));
       final String response = await rootBundle.loadString(uri);
-      return json.decode(response);
+      var res = json.decode(response);
+      print(res);
+      return res;
     } on FormatException {
       throw Failure('Bad response format');
     } catch (ex) {

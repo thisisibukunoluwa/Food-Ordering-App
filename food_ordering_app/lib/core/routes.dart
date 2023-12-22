@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:food_ordering_app/models/restaurant_model.dart';
 import 'package:food_ordering_app/features/productlisting/productlisting_view.dart';
 import 'package:food_ordering_app/features/splash/splash_view.dart';
+import 'package:food_ordering_app/providers/view_model_provider.dart';
+import 'package:food_ordering_app/viewmodels/cart_list_view_model.dart';
+import 'package:food_ordering_app/viewmodels/restaurant_view_model.dart';
 
 import '../features/bag/cart_view.dart';
 import '../features/checkout/checkout_view.dart';
@@ -39,9 +42,19 @@ class Routes {
       case checkout:
         return MaterialPageRoute(builder: (_) => const CheckoutView());
       case cart:
-        return MaterialPageRoute(builder: (_) => const CartView());
+        return MaterialPageRoute(
+          builder: (_) => ViewModelProvider<CartListViewModel>(
+            viewModel: CartListViewModel(), 
+            child: const CartView()
+          )
+        );
       case home:
-        return MaterialPageRoute(builder: (_) => const HomeView());
+        return MaterialPageRoute(
+          builder: (_) => ViewModelProvider<RestaurantViewModel>(
+                viewModel: RestaurantViewModel(), 
+                child: const HomeView()
+          )
+      );
       // case productDetails:
       //   final book = settings.arguments as Order;
       //   return MaterialPageRoute(

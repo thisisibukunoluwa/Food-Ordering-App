@@ -1,7 +1,7 @@
 
 
 class RestaurantResponse {
-   final List<MenuCategory> restaurants;
+   final List<RestaurantModel> restaurants;
 
   RestaurantResponse({
     required this.restaurants,
@@ -9,7 +9,7 @@ class RestaurantResponse {
 
   factory RestaurantResponse.fromMap(Map<String, dynamic> map) {
     return RestaurantResponse(
-      restaurants: List<MenuCategory>.from(map['restaurants']?.map((x) => MenuCategory.fromJson(x))),
+      restaurants: List<RestaurantModel>.from(map['restaurants']?.map((x) => RestaurantModel.fromJson(x))),
     );
   }
 
