@@ -11,9 +11,7 @@ class HttpService implements INetworkService {
       // to simulate network latency
       Future.delayed(const Duration(milliseconds: 300));
       final String response = await rootBundle.loadString(uri);
-      var res = json.decode(response);
-      print(res);
-      return res;
+      return response;
     } on FormatException {
       throw Failure('Bad response format');
     } catch (ex) {

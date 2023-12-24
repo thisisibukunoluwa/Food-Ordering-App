@@ -103,9 +103,11 @@ class _ProductsList extends StatelessWidget {
     // we will actually get the restaurant data from a viewmodel
     final restaurants = ViewModelProvider.read<RestaurantViewModel>(context);
 
+    
+
     var apiResponse = restaurants.response;
-    print(restaurants.fetchRestaurants());
-    // print(apiResponse.data);
+    
+    print(apiResponse.data); // the api response data is null here 
 
     // List<Widget> restaurantCards = apiResponse.data.map((restaurant) {
     //   return Center(
@@ -114,9 +116,9 @@ class _ProductsList extends StatelessWidget {
     // }).toList();
 
     switch (apiResponse.status) {
-      case Status.LOADING:
+      case Status.loading:
         return const Center(child: CircularProgressIndicator());
-      case Status.COMPLETED:
+      case Status.completed:
         return SizedBox(
           height: 600,
           child: ListView(
@@ -129,14 +131,14 @@ class _ProductsList extends StatelessWidget {
             ],
           ),
         );
-      case Status.ERROR:
+      case Status.error:
         return const Center(
           child: Text('An unknown error occurred!!!'),
         );
-      case Status.INITIAL:
+      case Status.initial:
       default:
         return const Center(
-          child: Text('Search the song by Artist'),
+          child: Text('Get your favorite product'),
         );
     }
   }
