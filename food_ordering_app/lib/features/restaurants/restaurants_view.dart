@@ -95,26 +95,15 @@ class _Header extends StatelessWidget {
   }
 }
 
-class _ProductsList extends StatelessWidget {
+class _ProductsList extends StatefulWidget {
   const _ProductsList({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    // we will actually get the restaurant data from a viewmodel
-    final restaurants = ViewModelProvider.read<RestaurantViewModel>(context);
+  State<_ProductsList> createState() => _ProductsListState();
+}
 
-    
-
-    var apiResponse = restaurants.response;
-    
-    print(apiResponse.data); // the api response data is null here 
-
-    // List<Widget> restaurantCards = apiResponse.data.map((restaurant) {
-    //   return Center(
-    //     child: RestaurantCard(restaurant: restaurant),
-    //   );
-    // }).toList();
-
+class _ProductsListState extends State<_ProductsList> {
+  getBody(BuildContext context, ApiResponse apiResponse) {
     switch (apiResponse.status) {
       case Status.loading:
         return const Center(child: CircularProgressIndicator());
@@ -141,6 +130,35 @@ class _ProductsList extends StatelessWidget {
           child: Text('Get your favorite product'),
         );
     }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // we will actually get the restaurant data from a viewmodel
+    final restaurants = ViewModelProvider.read<RestaurantViewModel>(context);
+
+    restaurants.fetchRestaurants(); // it is working
+
+    // when we access the response - the getter we are supposed to get the latest value of api response
+
+    // the apiResponse variable does not change
+
+    // we are saving the initial value in a variable maybe thatswhy it doesn;t change???
+
+    var apiResponse = restaurants.response;
+
+    // print(apiResponse); // the api reponse variable never gets updated
+
+    // print(apiResponse.data);
+    // the api response data is null here
+
+    // List<Widget> restaurantCards = apiResponse.data.map((restaurant) {
+    //   return Center(
+    //     child: RestaurantCard(restaurant: restaurant),
+    //   );
+    // }).toList();
+
+    return getBody(context, apiResponse);
   }
 }
 
