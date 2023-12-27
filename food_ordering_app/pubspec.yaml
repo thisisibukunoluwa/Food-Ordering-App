@@ -66,11 +66,6 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/classicpizza/
-    - assets/drinks/
-    - assets/popularrestaurants/
-    - assets/sides/
-    - assets/premiumpizza/
     - assets/images/
     - assets/svgs/
     - assets/json/response.json

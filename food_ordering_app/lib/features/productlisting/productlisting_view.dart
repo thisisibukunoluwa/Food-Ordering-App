@@ -6,8 +6,6 @@ import 'package:food_ordering_app/utils/formatMenuCategory.dart';
 import 'package:food_ordering_app/widgets/glassmorphism.dart';
 import 'package:food_ordering_app/widgets/restaurant_details.dart';
 
-
-
 class ProductslistingView extends StatefulWidget {
   final RestaurantModel restaurant;
   const ProductslistingView({
@@ -47,7 +45,6 @@ class _ProductslistingViewState extends State<ProductslistingView>
   Widget build(BuildContext context) {
     // this is not working
     // final args = ModalRoute.of(context)!.settings.arguments;
-    final res = widget.restaurant.menu;
     return Scaffold(
         body: CustomScrollView(
       slivers: [
@@ -74,10 +71,21 @@ class _ProductslistingViewState extends State<ProductslistingView>
                     controller: _controller,
                     tabs: [
                       ...widget.restaurant.menu.map((category) => Tab(
-                            text: convertCamelCaseToWords(category.categoryName),
+                            text:
+                                convertCamelCaseToWords(category.categoryName),
                           ))
                     ]))),
-        //
+        // iterate through all the categories
+        ...widget.restaurant.menu.map((category) {
+          return SliverToBoxAdapter(
+            child: Column(
+              children: [
+                Text(category.categoryName),
+                ...category.meals.map((meal) => Text(meal.title))
+              ],
+            ),
+          );
+        })
       ],
     ));
   }
@@ -149,5 +157,4 @@ _scrollToSection(GlobalKey key) {
 
 // add error handling and loading state
 
-// add the viewModel way from our notion , that will be our state management - using only ValueNotifiers 
-
+// add the viewModel way from our notion , that will be our state management - using only ValueNotifiers
