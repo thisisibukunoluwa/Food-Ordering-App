@@ -2,7 +2,7 @@
   "restaurants": [
     {
       "title": "The Pizza Place",
-      "image": "Assets.popularrestaurants.pizzaplace.path",
+      "image": "https://res.cloudinary.com/madebyibukunoluwa/image/upload/v1703711793/Food-ordering-project/hooq8v8bz4qjbpvzr8ok.jpg",
       "distance": 2,
       "rating": 5,
       "deliveryTime": "20 to 30 mins",
@@ -102,7 +102,7 @@
     },
     {
       "title": "Ice Cream Factory",
-      "image": "Assets.popularrestaurants.icecreamfactory.path",
+      "image": "https://res.cloudinary.com/madebyibukunoluwa/image/upload/v1703711786/Food-ordering-project/tcslbjepg5d7bra9h9pn.jpg",
       "distance": 2,
       "rating": 5,
       "deliveryTime": "15 to 25 mins",
@@ -202,7 +202,7 @@
     },
     {
       "title": "Coffee",
-      "image": "Assets.popularrestaurants.coffeehouse.path",
+      "image": "https://res.cloudinary.com/madebyibukunoluwa/image/upload/v1703711785/Food-ordering-project/qf8bcefotbdty1kwwwae.jpg",
       "distance": 2,
       "rating": 4.5,
       "deliveryTime": "15 to 20 mins",

@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:food_ordering_app/features/bag/cart_view.dart';
 import 'package:food_ordering_app/models/restaurant_model.dart';
-import 'package:food_ordering_app/features/orders/order_view.dart';
-import 'package:food_ordering_app/features/profile/profile_view.dart';
 import 'package:food_ordering_app/providers/view_model_provider.dart';
 import 'package:food_ordering_app/viewmodels/restaurant_view_model.dart';
 import 'package:food_ordering_app/widgets/custom_button.dart';
 import 'package:food_ordering_app/widgets/restaurant_card.dart';
-import 'package:dot_navigation_bar/dot_navigation_bar.dart';
 import '../../gen/assets.gen.dart';
 import '../../models/api_response.dart';
 
@@ -103,62 +99,66 @@ class _ProductsList extends StatefulWidget {
 }
 
 class _ProductsListState extends State<_ProductsList> {
-  getBody(BuildContext context, ApiResponse apiResponse) {
+  // Future<void>? restaurants;
+  ApiResponse<dynamic> apiResponse = ApiResponse.initial('theres no data');
+  List<RestaurantModel> restaurantsData = [];
+  List<Widget> restaurantCards = [];
+
+//ideally i wanted to put this logic in initState() method so that it will be called once and the data fetched once when the widget is built but i get this error -  The following assertion was thrown building _MainBody:
+          //  dependOnInheritedWidgetOfExactType<ViewModelProvider<RestaurantViewModel>>() or
+          //  dependOnInheritedElement() was called before _ProductsListState.initState() completed.
+          //  When an inherited widget changes, for example if the value of Theme.of() changes, its dependent
+          //  widgets are rebuilt. If the dependent widget's reference to the inherited widget is in a constructor
+          //  or an initState() method, then the rebuilt dependent widget will not reflect the changes in the
+          //  inherited widget.
+          //  Typically references to inherited widgets should occur in widget build() methods. Alternatively,
+          //  initialization based on inherited widgets can be placed in the didChangeDependencies method, which
+          //  is called after initState and whenever the dependencies change thereafter.
+           
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final restaurants = ViewModelProvider.read<RestaurantViewModel>(context);
+    restaurants.fetchRestaurants().then((_) {
+      setState(() {
+        apiResponse = restaurants.response;
+        restaurantsData = apiResponse.data;
+        restaurantCards = restaurantsData.map((restaurant) {
+          return RestaurantCard(restaurant: restaurant);
+        }).toList();
+      });
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     switch (apiResponse.status) {
       case Status.loading:
         return const Center(child: CircularProgressIndicator());
       case Status.completed:
-        return SizedBox(
-          height: 600,
-          child: ListView(
-            children: [
-              // ...restaurantCards,
-              CustomButton(
-                  buttonText: "View all Restaurants",
-                  onPressed: () {},
-                  color: Colors.white)
-            ],
-          ),
-        );
+      // add spotify type scroll effect for this home page 
+      return Column(
+        children: [
+          ...restaurantCards,
+          CustomButton(
+              buttonText: "View all Restaurants",
+              onPressed: () {},
+              color: Colors.white)
+        ],
+      );
       case Status.error:
         return const Center(
           child: Text('An unknown error occurred!!!'),
         );
       case Status.initial:
+        return const Center(
+          child: Text('No data'),
+        );
       default:
         return const Center(
-          child: Text('Get your favorite product'),
+          child: Text('All restaurants'),
         );
     }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    // we will actually get the restaurant data from a viewmodel
-    final restaurants = ViewModelProvider.read<RestaurantViewModel>(context);
-
-    restaurants.fetchRestaurants(); // it is working
-
-    // when we access the response - the getter we are supposed to get the latest value of api response
-
-    // the apiResponse variable does not change
-
-    // we are saving the initial value in a variable maybe thatswhy it doesn;t change???
-
-    var apiResponse = restaurants.response;
-
-    // print(apiResponse); // the api reponse variable never gets updated
-
-    // print(apiResponse.data);
-    // the api response data is null here
-
-    // List<Widget> restaurantCards = apiResponse.data.map((restaurant) {
-    //   return Center(
-    //     child: RestaurantCard(restaurant: restaurant),
-    //   );
-    // }).toList();
-
-    return getBody(context, apiResponse);
   }
 }
 
@@ -169,7 +169,7 @@ class _MainBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(left: 20.w, right: 20.w, top: 85.2.w, bottom: 0),
-      child: Column(
+      child: ListView(
         children: [
           const _Header(),
           SizedBox(

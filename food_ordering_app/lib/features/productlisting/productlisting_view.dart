@@ -6,13 +6,7 @@ import 'package:food_ordering_app/utils/formatMenuCategory.dart';
 import 'package:food_ordering_app/widgets/glassmorphism.dart';
 import 'package:food_ordering_app/widgets/restaurant_details.dart';
 
-enum MenuItemCategory {
-  comboDeals,
-  classicPizza,
-  premiumPizza,
-  sides,
-  drinks,
-}
+
 
 class ProductslistingView extends StatefulWidget {
   final RestaurantModel restaurant;
@@ -39,7 +33,7 @@ class _ProductslistingViewState extends State<ProductslistingView>
   void initState() {
     _scrollcontroller = ScrollController();
     _controller =
-        TabController(vsync: this, length: MenuItemCategory.values.length);
+        TabController(vsync: this, length: widget.restaurant.menu.length);
     super.initState();
   }
 
@@ -53,7 +47,7 @@ class _ProductslistingViewState extends State<ProductslistingView>
   Widget build(BuildContext context) {
     // this is not working
     // final args = ModalRoute.of(context)!.settings.arguments;
-
+    final res = widget.restaurant.menu;
     return Scaffold(
         body: CustomScrollView(
       slivers: [
@@ -79,8 +73,8 @@ class _ProductslistingViewState extends State<ProductslistingView>
                     indicatorColor: Colors.black,
                     controller: _controller,
                     tabs: [
-                      ...MenuItemCategory.values.map((category) => Tab(
-                            text: convertCamelCaseToWords(category.name),
+                      ...widget.restaurant.menu.map((category) => Tab(
+                            text: convertCamelCaseToWords(category.categoryName),
                           ))
                     ]))),
         //
@@ -110,7 +104,8 @@ class _ProductListingViewAppBar extends StatelessWidget {
             ],
             background: Stack(
               children: [
-                Transform.scale(scale: 2, child: Image.asset(restaurant.image)),
+                Transform.scale(
+                    scale: 2, child: Image.network(restaurant.image)),
                 Positioned(
                     left: 10,
                     bottom: 20,

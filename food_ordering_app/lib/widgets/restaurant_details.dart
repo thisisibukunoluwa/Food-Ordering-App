@@ -19,24 +19,24 @@ class RestaurantDetails extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-              Text(
-          restaurant.title,
+              Text( 
+                restaurant.title,
           style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20.sp),
             ),
             if (isDetails)  
             Text(
               '${restaurant.deliveryTime} delivery', style:
-              TextStyle(fontWeight: FontWeight.w600, fontSize: 13.sp
-            ))
+              TextStyle(fontWeight: FontWeight.w600, fontSize: 13.sp)
+              )
           ],
         ),
-        SizedBox(
+        const SizedBox(
           height: 5,
         ),
         Row(
