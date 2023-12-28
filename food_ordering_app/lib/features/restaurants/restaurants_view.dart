@@ -168,7 +168,7 @@ class _MainBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left: 20.w, right: 20.w, top: 85.2.w, bottom: 0),
+      padding: EdgeInsets.only(left: 20.w, right: 20.w, top: 45.2.w, bottom: 0),
       child: ListView(
         children: [
           const _Header(),

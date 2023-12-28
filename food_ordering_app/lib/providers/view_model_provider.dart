@@ -27,7 +27,7 @@ class ViewModelProvider<T> extends InheritedWidget {
 
     return viewModelProvider.viewModel;
   }
-
 }
+
 
 

@@ -29,13 +29,13 @@ class _HomeViewState extends State<HomeView> {
         resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
         body: [
-          RestaurantsView(),
-          CartView(),
-          OrderView(),
-          ProfileView()
+          const RestaurantsView(),
+          const CartView(),
+          const OrderView(),
+          const ProfileView()
         ][currentPageIndex],
         bottomNavigationBar: DotNavigationBar(
-          marginR: EdgeInsets.symmetric(horizontal: 20),
+          marginR: const EdgeInsets.symmetric(horizontal: 20),
           boxShadow: const [
             BoxShadow(
               color: Color.fromARGB(27, 37, 35, 35),

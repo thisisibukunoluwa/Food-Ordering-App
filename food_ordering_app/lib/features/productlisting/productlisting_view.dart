@@ -4,6 +4,7 @@ import 'package:food_ordering_app/models/restaurant_model.dart';
 import 'package:food_ordering_app/services/navigation_service.dart';
 import 'package:food_ordering_app/utils/formatMenuCategory.dart';
 import 'package:food_ordering_app/widgets/glassmorphism.dart';
+import 'package:food_ordering_app/widgets/menu_category_option.dart';
 import 'package:food_ordering_app/widgets/restaurant_details.dart';
 
 class ProductslistingView extends StatefulWidget {
@@ -30,8 +31,14 @@ class _ProductslistingViewState extends State<ProductslistingView>
   @override
   void initState() {
     _scrollcontroller = ScrollController();
-    _controller =
-        TabController(vsync: this, length: widget.restaurant.menu.length);
+    _controller = TabController(
+      vsync: this,
+      length: widget.restaurant.menu.length,
+    );
+    _controller.addListener(() {
+      // when we change the tab it scrolls to the right secton 
+      // it can only scroll to the right section if we create a fn that receives a key 
+    });
     super.initState();
   }
 
@@ -63,7 +70,6 @@ class _ProductslistingViewState extends State<ProductslistingView>
             child: SizedBox(
                 height: 30.h,
                 child: TabBar(
-                    // onTap: () => _scrollToSection(key),
                     isScrollable: true,
                     labelColor: Colors.black,
                     unselectedLabelColor: Colors.grey,
@@ -75,17 +81,29 @@ class _ProductslistingViewState extends State<ProductslistingView>
                                 convertCamelCaseToWords(category.categoryName),
                           ))
                     ]))),
-        // iterate through all the categories
-        ...widget.restaurant.menu.map((category) {
-          return SliverToBoxAdapter(
-            child: Column(
-              children: [
-                Text(category.categoryName),
-                ...category.meals.map((meal) => Text(meal.title))
-              ],
+        SliverPadding(
+          padding:
+          EdgeInsets.only(left: 20.w, right: 20.w, top: 45.2.w, bottom: 0),
+          sliver: SliverList(
+            delegate: SliverChildBuilderDelegate(
+              (BuildContext context, int index) {
+                var category = widget.restaurant.menu[index];
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      category.categoryName,
+                      key: ValueKey(category.categoryName),
+                    ),
+                    ...category.meals.map(
+                        (menuitem) => MenuCategoryOption(menuitem: menuitem)),
+                  ],
+                );
+              },
+              childCount: widget.restaurant.menu.length,
             ),
-          );
-        })
+          ),
+        )
       ],
     ));
   }
@@ -104,7 +122,7 @@ class _ProductListingViewAppBar extends StatelessWidget {
     return SliverAppBar(
         pinned: true,
         expandedHeight: 200,
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.black45,
         flexibleSpace: FlexibleSpaceBar(
             stretchModes: const [
               StretchMode.fadeTitle,
@@ -145,16 +163,6 @@ _scrollToSection(GlobalKey key) {
 
 // we'll complete the app normally but then we'll create another branch , that uses the data as mock data with futures to simulate network delay , then the third one will be a whole refactoring with riverpod
 
-//restaurant - menu
-
 //TODO
 
-// GET the restaurant class that we have and convert it to json, or mutate the json we have from chatgpt
-
-// deserialize so we are able to access it , like its from a nromal network server
-
-// add a service and repository and an artificial Future,delay to simulate network delay
-
 // add error handling and loading state
-
-// add the viewModel way from our notion , that will be our state management - using only ValueNotifiers

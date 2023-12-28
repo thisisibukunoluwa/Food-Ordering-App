@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_ordering_app/core/routes.dart';
@@ -24,7 +25,7 @@ class RestaurantCard extends StatelessWidget {
           children: [
             Stack(
               children: [
-                Image.network(restaurant.image),
+                CachedNetworkImage(imageUrl: restaurant.image),
                 Positioned(
                     bottom: 0,
                     right: 0,
