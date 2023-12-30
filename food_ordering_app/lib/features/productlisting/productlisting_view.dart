@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:food_ordering_app/features/productlisting/menu_category_section.dart';
 import 'package:food_ordering_app/models/restaurant_model.dart';
-import 'package:food_ordering_app/services/navigation_service.dart';
+import 'package:vertical_scrollable_tabview/vertical_scrollable_tabview.dart';
+import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:food_ordering_app/utils/formatMenuCategory.dart';
 import 'package:food_ordering_app/widgets/glassmorphism.dart';
-import 'package:food_ordering_app/widgets/menu_category_option.dart';
 import 'package:food_ordering_app/widgets/restaurant_details.dart';
 
 class ProductslistingView extends StatefulWidget {
@@ -19,32 +20,22 @@ class ProductslistingView extends StatefulWidget {
 }
 
 class _ProductslistingViewState extends State<ProductslistingView>
-    with TickerProviderStateMixin {
-  late TabController _controller;
-  late ScrollController _scrollcontroller;
-
-  final GlobalKey key1 = GlobalKey();
-  final GlobalKey key2 = GlobalKey();
-  final GlobalKey key3 = GlobalKey();
-  final GlobalKey key4 = GlobalKey();
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+  late AutoScrollController _autoScrollController;
 
   @override
   void initState() {
-    _scrollcontroller = ScrollController();
-    _controller = TabController(
-      vsync: this,
-      length: widget.restaurant.menu.length,
-    );
-    _controller.addListener(() {
-      // when we change the tab it scrolls to the right secton 
-      // it can only scroll to the right section if we create a fn that receives a key 
-    });
+    _tabController =
+        TabController(length: widget.restaurant.menu.length, vsync: this);
+    _autoScrollController = AutoScrollController();
     super.initState();
   }
 
   @override
   void dispose() {
-    _controller.dispose();
+    _tabController.dispose();
+    _autoScrollController.dispose();
     super.dispose();
   }
 
@@ -52,8 +43,15 @@ class _ProductslistingViewState extends State<ProductslistingView>
   Widget build(BuildContext context) {
     // this is not working
     // final args = ModalRoute.of(context)!.settings.arguments;
+    
     return Scaffold(
-        body: CustomScrollView(
+        body: VerticalScrollableTabView(
+      autoScrollController: _autoScrollController,
+      scrollbarThumbVisibility: false,
+      tabController: _tabController,
+      listItemData: widget.restaurant.menu,
+      verticalScrollPosition: VerticalScrollPosition.begin,
+      eachItemChild: (object, index) => MenuCategorySection(restaurant:widget.restaurant,index:index),
       slivers: [
         _ProductListingViewAppBar(restaurant: widget.restaurant),
         SliverPadding(
@@ -74,38 +72,74 @@ class _ProductslistingViewState extends State<ProductslistingView>
                     labelColor: Colors.black,
                     unselectedLabelColor: Colors.grey,
                     indicatorColor: Colors.black,
-                    controller: _controller,
+                    indicatorWeight: 3.0,
+                    indicatorPadding:
+                        const EdgeInsets.symmetric(horizontal: 8.0),
+                    controller: _tabController,
+                    onTap: (index) {
+                      VerticalScrollableTabBarStatus.setIndex(index);
+                    },
                     tabs: [
                       ...widget.restaurant.menu.map((category) => Tab(
                             text:
                                 convertCamelCaseToWords(category.categoryName),
-                          ))
+                          )),
                     ]))),
-        SliverPadding(
-          padding:
-          EdgeInsets.only(left: 20.w, right: 20.w, top: 45.2.w, bottom: 0),
-          sliver: SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (BuildContext context, int index) {
-                var category = widget.restaurant.menu[index];
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      category.categoryName,
-                      key: ValueKey(category.categoryName),
-                    ),
-                    ...category.meals.map(
-                        (menuitem) => MenuCategoryOption(menuitem: menuitem)),
-                  ],
-                );
-              },
-              childCount: widget.restaurant.menu.length,
-            ),
-          ),
-        )
       ],
     ));
+    //     CustomScrollView(
+    //   slivers: [
+    //     _ProductListingViewAppBar(restaurant: widget.restaurant),
+    //     SliverPadding(
+    //       padding: EdgeInsets.only(left: 20.w, right: 20.w, top: 0, bottom: 0),
+    //       sliver: SliverToBoxAdapter(
+    //         child: RestaurantDetails(
+    //             restaurant: widget.restaurant, isDetails: true),
+    //       ),
+    //     ),
+    //     SliverToBoxAdapter(
+    //       child: SizedBox(height: 40.h),
+    //     ),
+    //     SliverToBoxAdapter(
+    //         child: SizedBox(
+    //             height: 30.h,
+    //             child: TabBar(
+    //                 isScrollable: true,
+    //                 labelColor: Colors.black,
+    //                 unselectedLabelColor: Colors.grey,
+    //                 indicatorColor: Colors.black,
+    //                 controller: _controller,
+    //                 tabs: [
+    //                   ...widget.restaurant.menu.map((category) => Tab(
+    //                         text:
+    //                             convertCamelCaseToWords(category.categoryName),
+    //                       ))
+    //                 ]))),
+    //     SliverPadding(
+    //       padding:
+    //       EdgeInsets.only(left: 20.w, right: 20.w, top: 45.2.w, bottom: 0),
+    //       sliver: SliverList(
+    //         delegate: SliverChildBuilderDelegate(
+    //           (BuildContext context, int index) {
+    //             var category = widget.restaurant.menu[index];
+    //             return Column(
+    //               crossAxisAlignment: CrossAxisAlignment.start,
+    //               children: [
+    //                 Text(
+    //                   category.categoryName,
+    //                   key: ValueKey(category.categoryName),
+    //                 ),
+    //                 ...category.meals.map(
+    //                     (menuitem) => MenuCategoryOption(menuitem: menuitem)),
+    //               ],
+    //             );
+    //           },
+    //           childCount: widget.restaurant.menu.length,
+    //         ),
+    //       ),
+    //     )
+    //   ],
+    // ));
   }
 }
 
@@ -147,17 +181,6 @@ class _ProductListingViewAppBar extends StatelessWidget {
                             ))))
               ],
             )));
-  }
-}
-
-_scrollToSection(GlobalKey key) {
-  final targetContext = key.currentContext;
-  if (targetContext != null) {
-    Scrollable.ensureVisible(
-      targetContext,
-      duration: const Duration(milliseconds: 400),
-      curve: Curves.easeInOutCubic,
-    );
   }
 }
 
