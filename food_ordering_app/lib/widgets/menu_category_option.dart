@@ -19,7 +19,7 @@ class MenuCategoryOption extends StatelessWidget {
               borderRadius:BorderRadius.circular(16.0), 
               child: CachedNetworkImage(
                   width: 200.0,
-                  height: 100.0,
+                  height: 80.0,
                   fit: BoxFit.cover,
                 imageUrl: menuitem.image
             ),
@@ -34,16 +34,16 @@ class MenuCategoryOption extends StatelessWidget {
                 menuitem.title,
                 style:  TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize:15.sp
+                  fontSize:17.sp,
                 ),
               ),
-              Text(menuitem.description)
+              Text(menuitem.description, style: const TextStyle(color: Colors.grey),)
             ],
           ),
         ),
         Flexible(
           flex: 1,
-          child: Text('${menuitem.price}')
+          child: Text('\$ ${menuitem.price}', style: const TextStyle(fontWeight: FontWeight.bold))
         )
     ]);
   }

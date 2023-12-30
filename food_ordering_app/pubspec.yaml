@@ -41,6 +41,8 @@ dependencies:
   skeletonizer: ^0.8.0
   logging: ^1.2.0
   cached_network_image: ^3.3.0
+  vertical_scrollable_tabview: ^0.1.1
+  scroll_to_index: ^3.0.1
 
 dev_dependencies:
   flutter_test:
