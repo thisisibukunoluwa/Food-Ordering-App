@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:food_ordering_app/features/productlisting/menu_category_section.dart';
+import 'package:food_ordering_app/features/menulisting/product_category_section.dart';
 import 'package:food_ordering_app/models/restaurant_model.dart';
+import 'package:food_ordering_app/services/navigation_service.dart';
 import 'package:vertical_scrollable_tabview/vertical_scrollable_tabview.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:food_ordering_app/utils/formatMenuCategory.dart';
@@ -43,7 +44,7 @@ class _ProductslistingViewState extends State<ProductslistingView>
   Widget build(BuildContext context) {
     // this is not working
     // final args = ModalRoute.of(context)!.settings.arguments;
-    
+
     return Scaffold(
         body: VerticalScrollableTabView(
       autoScrollController: _autoScrollController,
@@ -51,7 +52,8 @@ class _ProductslistingViewState extends State<ProductslistingView>
       tabController: _tabController,
       listItemData: widget.restaurant.menu,
       verticalScrollPosition: VerticalScrollPosition.begin,
-      eachItemChild: (object, index) => MenuCategorySection(restaurant:widget.restaurant,index:index),
+      eachItemChild: (object, index) =>
+          ProductCategorySection(restaurant: widget.restaurant, index: index),
       slivers: [
         _ProductListingViewAppBar(restaurant: widget.restaurant),
         SliverPadding(
@@ -87,59 +89,6 @@ class _ProductslistingViewState extends State<ProductslistingView>
                     ]))),
       ],
     ));
-    //     CustomScrollView(
-    //   slivers: [
-    //     _ProductListingViewAppBar(restaurant: widget.restaurant),
-    //     SliverPadding(
-    //       padding: EdgeInsets.only(left: 20.w, right: 20.w, top: 0, bottom: 0),
-    //       sliver: SliverToBoxAdapter(
-    //         child: RestaurantDetails(
-    //             restaurant: widget.restaurant, isDetails: true),
-    //       ),
-    //     ),
-    //     SliverToBoxAdapter(
-    //       child: SizedBox(height: 40.h),
-    //     ),
-    //     SliverToBoxAdapter(
-    //         child: SizedBox(
-    //             height: 30.h,
-    //             child: TabBar(
-    //                 isScrollable: true,
-    //                 labelColor: Colors.black,
-    //                 unselectedLabelColor: Colors.grey,
-    //                 indicatorColor: Colors.black,
-    //                 controller: _controller,
-    //                 tabs: [
-    //                   ...widget.restaurant.menu.map((category) => Tab(
-    //                         text:
-    //                             convertCamelCaseToWords(category.categoryName),
-    //                       ))
-    //                 ]))),
-    //     SliverPadding(
-    //       padding:
-    //       EdgeInsets.only(left: 20.w, right: 20.w, top: 45.2.w, bottom: 0),
-    //       sliver: SliverList(
-    //         delegate: SliverChildBuilderDelegate(
-    //           (BuildContext context, int index) {
-    //             var category = widget.restaurant.menu[index];
-    //             return Column(
-    //               crossAxisAlignment: CrossAxisAlignment.start,
-    //               children: [
-    //                 Text(
-    //                   category.categoryName,
-    //                   key: ValueKey(category.categoryName),
-    //                 ),
-    //                 ...category.meals.map(
-    //                     (menuitem) => MenuCategoryOption(menuitem: menuitem)),
-    //               ],
-    //             );
-    //           },
-    //           childCount: widget.restaurant.menu.length,
-    //         ),
-    //       ),
-    //     )
-    //   ],
-    // ));
   }
 }
 
@@ -154,9 +103,10 @@ class _ProductListingViewAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
+        automaticallyImplyLeading: false,
         pinned: true,
         expandedHeight: 200,
-        backgroundColor: Colors.black45,
+        backgroundColor: Colors.transparent,
         flexibleSpace: FlexibleSpaceBar(
             stretchModes: const [
               StretchMode.fadeTitle,
@@ -166,6 +116,23 @@ class _ProductListingViewAppBar extends StatelessWidget {
               children: [
                 Transform.scale(
                     scale: 2, child: Image.network(restaurant.image)),
+                Positioned(
+                  left:10,
+                  top:50,
+                   child:Container(
+                    width: 70.0,
+                    height: 60.0,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.rectangle,
+                      color: Colors.white,
+                    ),
+                     child: IconButton(
+                      icon: const Icon(Icons.arrow_back),
+                      onPressed: () {
+                        navigationService.navigateBack();
+                      },
+                  ),
+                )),
                 Positioned(
                     left: 10,
                     bottom: 20,

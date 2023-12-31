@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:food_ordering_app/features/productdetails/productdetails_view.dart';
 import 'package:food_ordering_app/models/restaurant_model.dart';
-import 'package:food_ordering_app/features/productlisting/productlisting_view.dart';
+import 'package:food_ordering_app/features/menulisting/productlisting_view.dart';
 import 'package:food_ordering_app/features/splash/splash_view.dart';
 import 'package:food_ordering_app/providers/view_model_provider.dart';
 import 'package:food_ordering_app/viewmodels/cart_list_view_model.dart';
@@ -50,16 +51,13 @@ class Routes {
         );
       case home:
         return MaterialPageRoute(
-          builder: (_) => ViewModelProvider<RestaurantViewModel>(
-                viewModel: RestaurantViewModel(), 
-                child: const HomeView()
-          )
+          builder: (_) => const HomeView()
       );
-      // case productDetails:
-      //   final book = settings.arguments as Order;
-      //   return MaterialPageRoute(
-      //     builder: (_) => OrderDetailsView(order: order),
-      //   );
+      case productDetails:
+        // final book = settings.arguments as Order;
+        return MaterialPageRoute(
+          builder: (_) => ProductDetailsView()
+        );
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

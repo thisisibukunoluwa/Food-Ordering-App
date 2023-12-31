@@ -9,3 +9,4 @@ class CheckoutView extends StatelessWidget {
     return const Placeholder();
   }
 }
+
