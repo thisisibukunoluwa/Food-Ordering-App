@@ -1,18 +1,21 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart' show timeDilation;
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_ordering_app/models/restaurant_model.dart';
 import 'package:food_ordering_app/services/navigation_service.dart';
 
 class ProductCategoryOption extends StatelessWidget {
-  final MenuItem menuitem;
-  const ProductCategoryOption({super.key, required this.menuitem});
+  final MenuItem menuItem;
+  const ProductCategoryOption({super.key, required this.menuItem});
 
   @override
   Widget build(BuildContext context) {
+    // timeDilation = 2.5;
     return GestureDetector(
       onTap: () {
-        navigationService.navigateToNamed('product-details');
+        navigationService.navigateToNamed('/product-details',
+            arguments: menuItem);
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -28,11 +31,14 @@ class ProductCategoryOption extends StatelessWidget {
                   flex: 1,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(16.0),
-                    child: CachedNetworkImage(
-                        width: 200.0,
-                        height: 80.0,
-                        fit: BoxFit.cover,
-                        imageUrl: menuitem.image),
+                    child: Hero(
+                      tag: '${menuItem.title}-detail-image',
+                      child: CachedNetworkImage(
+                          width: 200.0,
+                          height: 80.0,
+                          fit: BoxFit.cover,
+                          imageUrl: menuItem.image),
+                    ),
                   ),
                 ),
                 Flexible(
@@ -41,14 +47,14 @@ class ProductCategoryOption extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        menuitem.title,
+                        menuItem.title,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 17.sp,
                         ),
                       ),
                       Text(
-                        menuitem.description,
+                        menuItem.description,
                         style: const TextStyle(color: Colors.grey),
                       )
                     ],
@@ -56,7 +62,7 @@ class ProductCategoryOption extends StatelessWidget {
                 ),
                 Flexible(
                     flex: 1,
-                    child: Text('\$ ${menuitem.price}',
+                    child: Text('\$ ${menuItem.price}',
                         style: const TextStyle(fontWeight: FontWeight.bold)))
               ]),
         ],
@@ -64,3 +70,6 @@ class ProductCategoryOption extends StatelessWidget {
     );
   }
 }
+
+
+// TODO Hero animation 

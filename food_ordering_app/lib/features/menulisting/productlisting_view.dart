@@ -9,6 +9,8 @@ import 'package:food_ordering_app/utils/formatMenuCategory.dart';
 import 'package:food_ordering_app/widgets/glassmorphism.dart';
 import 'package:food_ordering_app/widgets/restaurant_details.dart';
 
+import '../../widgets/navback_button.dart';
+
 class ProductslistingView extends StatefulWidget {
   final RestaurantModel restaurant;
   const ProductslistingView({
@@ -86,7 +88,8 @@ class _ProductslistingViewState extends State<ProductslistingView>
                             text:
                                 convertCamelCaseToWords(category.categoryName),
                           )),
-                    ]))),
+                    ])
+                    )),
       ],
     ));
   }
@@ -104,7 +107,7 @@ class _ProductListingViewAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverAppBar(
         automaticallyImplyLeading: false,
-        pinned: true,
+        pinned: false,
         expandedHeight: 200,
         backgroundColor: Colors.transparent,
         flexibleSpace: FlexibleSpaceBar(
@@ -116,23 +119,10 @@ class _ProductListingViewAppBar extends StatelessWidget {
               children: [
                 Transform.scale(
                     scale: 2, child: Image.network(restaurant.image)),
-                Positioned(
+                const Positioned(
                   left:10,
                   top:50,
-                   child:Container(
-                    width: 70.0,
-                    height: 60.0,
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.rectangle,
-                      color: Colors.white,
-                    ),
-                     child: IconButton(
-                      icon: const Icon(Icons.arrow_back),
-                      onPressed: () {
-                        navigationService.navigateBack();
-                      },
-                  ),
-                )),
+                   child:NavBackButton(color:Colors.white)),
                 Positioned(
                     left: 10,
                     bottom: 20,
@@ -150,6 +140,7 @@ class _ProductListingViewAppBar extends StatelessWidget {
             )));
   }
 }
+
 
 // we'll complete the app normally but then we'll create another branch , that uses the data as mock data with futures to simulate network delay , then the third one will be a whole refactoring with riverpod
 

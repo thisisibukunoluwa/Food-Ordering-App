@@ -27,11 +27,13 @@ class ProductCategorySection extends StatelessWidget {
               key: ValueKey(category.categoryName),
             ),
             // SizedBox(height: 20,),
-            ...category.meals.map((menuitem) => ProductCategoryOption(menuitem: menuitem)),
+            ...category.meals.map((menuitem) => ProductCategoryOption(menuItem: menuitem)),
           ],
       ),
     );
   }
 }
+
+
 
 

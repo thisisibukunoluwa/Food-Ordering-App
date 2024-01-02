@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_ordering_app/features/productdetails/productdetails_view.dart';
+import 'package:food_ordering_app/models/product.dart';
 import 'package:food_ordering_app/models/restaurant_model.dart';
 import 'package:food_ordering_app/features/menulisting/productlisting_view.dart';
 import 'package:food_ordering_app/features/splash/splash_view.dart';
@@ -12,6 +13,7 @@ import '../features/checkout/checkout_view.dart';
 import '../features/confirmation/confirmation_view.dart';
 import '../features/home/home_view.dart';
 import '../features/orders/order_view.dart';
+import '../features/productdetails/productdetails_view.dart';
 import '../features/profile/profile_view.dart';
 
 class Routes {
@@ -38,26 +40,22 @@ class Routes {
         return MaterialPageRoute(builder: (_) => const ProfileView());
       case productListing:
         final restaurant = settings.arguments as RestaurantModel;
-        return MaterialPageRoute(builder: (_) => ProductslistingView(restaurant: restaurant,));
+        return MaterialPageRoute(
+            builder: (_) => ProductslistingView(
+                  restaurant: restaurant,
+                ));
 
       case checkout:
         return MaterialPageRoute(builder: (_) => const CheckoutView());
       case cart:
         return MaterialPageRoute(
-          builder: (_) => ViewModelProvider<CartListViewModel>(
-            viewModel: CartListViewModel(), 
-            child: const CartView()
-          )
-        );
+            builder: (_) => ViewModelProvider<CartListViewModel>(
+                viewModel: CartListViewModel(), child: const CartView()));
       case home:
-        return MaterialPageRoute(
-          builder: (_) => const HomeView()
-      );
+        return MaterialPageRoute(builder: (_) => const HomeView());
       case productDetails:
-        // final book = settings.arguments as Order;
-        return MaterialPageRoute(
-          builder: (_) => ProductDetailsView()
-        );
+        final menuItem = settings.arguments as MenuItem;
+        return MaterialPageRoute(builder: (_) => ProductDetailsView(menuItem: menuItem,));
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(
