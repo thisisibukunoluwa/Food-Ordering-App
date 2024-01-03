@@ -9,38 +9,6 @@
 
 import 'package:flutter/widgets.dart';
 
-class $AssetsClassicpizzaGen {
-  const $AssetsClassicpizzaGen();
-
-  /// File path: assets/classicpizza/bbqbeef.jpg
-  AssetGenImage get bbqbeef =>
-      const AssetGenImage('assets/classicpizza/bbqbeef.jpg');
-
-  /// File path: assets/classicpizza/bbqchicken.jpg
-  AssetGenImage get bbqchicken =>
-      const AssetGenImage('assets/classicpizza/bbqchicken.jpg');
-
-  /// File path: assets/classicpizza/veggiesupreme.jpg
-  AssetGenImage get veggiesupreme =>
-      const AssetGenImage('assets/classicpizza/veggiesupreme.jpg');
-
-  /// List of all assets
-  List<AssetGenImage> get values => [bbqbeef, bbqchicken, veggiesupreme];
-}
-
-class $AssetsDrinksGen {
-  const $AssetsDrinksGen();
-
-  /// File path: assets/drinks/soda.jpg
-  AssetGenImage get soda => const AssetGenImage('assets/drinks/soda.jpg');
-
-  /// File path: assets/drinks/water.jpg
-  AssetGenImage get water => const AssetGenImage('assets/drinks/water.jpg');
-
-  /// List of all assets
-  List<AssetGenImage> get values => [soda, water];
-}
-
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
@@ -58,6 +26,10 @@ class $AssetsImagesGen {
   /// File path: assets/images/hotdog.jpg
   AssetGenImage get hotdog => const AssetGenImage('assets/images/hotdog.jpg');
 
+  /// File path: assets/images/ibukunoluwa.jpg
+  AssetGenImage get ibukunoluwa =>
+      const AssetGenImage('assets/images/ibukunoluwa.jpg');
+
   /// File path: assets/images/map.jpg
   AssetGenImage get map => const AssetGenImage('assets/images/map.jpg');
 
@@ -67,72 +39,30 @@ class $AssetsImagesGen {
 
   /// List of all assets
   List<AssetGenImage> get values =>
-      [amelia, bankcard, happyman, hotdog, map, mapdetails];
+      [amelia, bankcard, happyman, hotdog, ibukunoluwa, map, mapdetails];
 }
 
-class $AssetsPopularrestaurantsGen {
-  const $AssetsPopularrestaurantsGen();
+class $AssetsJsonGen {
+  const $AssetsJsonGen();
 
-  /// File path: assets/popularrestaurants/burgerking.jpg
-  AssetGenImage get burgerking =>
-      const AssetGenImage('assets/popularrestaurants/burgerking.jpg');
-
-  /// File path: assets/popularrestaurants/coffeehouse.jpg
-  AssetGenImage get coffeehouse =>
-      const AssetGenImage('assets/popularrestaurants/coffeehouse.jpg');
-
-  /// File path: assets/popularrestaurants/icecreamfactory.jpg
-  AssetGenImage get icecreamfactory =>
-      const AssetGenImage('assets/popularrestaurants/icecreamfactory.jpg');
-
-  /// File path: assets/popularrestaurants/pizzaplace.jpg
-  AssetGenImage get pizzaplace =>
-      const AssetGenImage('assets/popularrestaurants/pizzaplace.jpg');
+  /// File path: assets/json/response.json
+  String get response => 'assets/json/response.json';
 
   /// List of all assets
-  List<AssetGenImage> get values =>
-      [burgerking, coffeehouse, icecreamfactory, pizzaplace];
-}
-
-class $AssetsPremiumpizzaGen {
-  const $AssetsPremiumpizzaGen();
-
-  /// File path: assets/premiumpizza/bbqmega.jpg
-  AssetGenImage get bbqmega =>
-      const AssetGenImage('assets/premiumpizza/bbqmega.jpg');
-
-  /// File path: assets/premiumpizza/chickenbali.jpg
-  AssetGenImage get chickenbali =>
-      const AssetGenImage('assets/premiumpizza/chickenbali.jpg');
-
-  /// File path: assets/premiumpizza/extravaganza.jpg
-  AssetGenImage get extravaganza =>
-      const AssetGenImage('assets/premiumpizza/extravaganza.jpg');
-
-  /// List of all assets
-  List<AssetGenImage> get values => [bbqmega, chickenbali, extravaganza];
-}
-
-class $AssetsSidesGen {
-  const $AssetsSidesGen();
-
-  /// File path: assets/sides/chickenwings.jpg
-  AssetGenImage get chickenwings =>
-      const AssetGenImage('assets/sides/chickenwings.jpg');
-
-  /// File path: assets/sides/frenchfries.jpg
-  AssetGenImage get frenchfries =>
-      const AssetGenImage('assets/sides/frenchfries.jpg');
-
-  /// File path: assets/sides/salad.jpg
-  AssetGenImage get salad => const AssetGenImage('assets/sides/salad.jpg');
-
-  /// List of all assets
-  List<AssetGenImage> get values => [chickenwings, frenchfries, salad];
+  List<String> get values => [response];
 }
 
 class $AssetsSvgsGen {
   const $AssetsSvgsGen();
+
+  /// File path: assets/svgs/Address.svg
+  String get address => 'assets/svgs/Address.svg';
+
+  /// File path: assets/svgs/CreditCard.svg
+  String get creditCard => 'assets/svgs/CreditCard.svg';
+
+  /// File path: assets/svgs/Settings.svg
+  String get settings => 'assets/svgs/Settings.svg';
 
   /// File path: assets/svgs/bag-active.svg
   String get bagActive => 'assets/svgs/bag-active.svg';
@@ -166,6 +96,9 @@ class $AssetsSvgsGen {
 
   /// List of all assets
   List<String> get values => [
+        address,
+        creditCard,
+        settings,
         bagActive,
         bag,
         homeActive,
@@ -182,13 +115,8 @@ class $AssetsSvgsGen {
 class Assets {
   Assets._();
 
-  static const $AssetsClassicpizzaGen classicpizza = $AssetsClassicpizzaGen();
-  static const $AssetsDrinksGen drinks = $AssetsDrinksGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
-  static const $AssetsPopularrestaurantsGen popularrestaurants =
-      $AssetsPopularrestaurantsGen();
-  static const $AssetsPremiumpizzaGen premiumpizza = $AssetsPremiumpizzaGen();
-  static const $AssetsSidesGen sides = $AssetsSidesGen();
+  static const $AssetsJsonGen json = $AssetsJsonGen();
   static const $AssetsSvgsGen svgs = $AssetsSvgsGen();
 }
 

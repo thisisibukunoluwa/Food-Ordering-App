@@ -120,8 +120,8 @@ class _ProductListingViewAppBar extends StatelessWidget {
                 Transform.scale(
                     scale: 2, child: Image.network(restaurant.image)),
                 const Positioned(
-                  left:10,
-                  top:50,
+                  left:20,
+                  top:70,
                    child:NavBackButton(color:Colors.white)),
                 Positioned(
                     left: 10,
