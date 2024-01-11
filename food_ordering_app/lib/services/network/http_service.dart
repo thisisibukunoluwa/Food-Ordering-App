@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/services.dart';
 import 'package:food_ordering_app/services/base/failure.dart';
 import 'package:food_ordering_app/services/network/i_network_service.dart';

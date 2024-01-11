@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_ordering_app/core/constants/colors.dart';
 import 'package:food_ordering_app/models/restaurant_model.dart';
 import 'package:food_ordering_app/widgets/custom_button.dart';
-import 'package:food_ordering_app/widgets/customiconbutton.dart';
+import 'package:food_ordering_app/widgets/custom_icon_button.dart';
 import 'package:food_ordering_app/widgets/navback_button.dart';
 
 class ProductDetailsView extends StatefulWidget {
@@ -21,6 +21,14 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
   bool isSelected = false;
   int? _value = 1;
   List<String> sizes = ['X-Large', 'Large', 'Small'];
+  final itemCountNotifier = ValueNotifier<int>(1);
+
+  @override
+  void dispose() {
+    itemCountNotifier.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +39,7 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-               NavBackButton(color: AppColors.black500.withOpacity(0.2)),
+              NavBackButton(color: AppColors.black500.withOpacity(0.2)),
               Text(widget.menuItem.title,
                   style:
                       TextStyle(fontWeight: FontWeight.bold, fontSize: 20.sp)),
@@ -55,7 +63,9 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                       imageUrl: widget.menuItem.image),
                 ),
               ),
-              SizedBox(height: 10.h,),
+              SizedBox(
+                height: 10.h,
+              ),
               Wrap(
                 spacing: 5.0,
                 children: List<Widget>.generate(
@@ -84,53 +94,83 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                   },
                 ).toList(),
               ),
-              SizedBox(height:20.h),
-               Column(
+              SizedBox(height: 50.h),
+              Column(
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('\$${widget.menuItem.price}',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20.sp,
-                              color: AppColors.primary300)),
+                      ValueListenableBuilder(
+                          valueListenable: itemCountNotifier,
+                          builder: (context, value, _) {
+                            return Text(
+                                '\$${(widget.menuItem.price * value).toStringAsFixed(2)}',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20.sp,
+                                    color: AppColors.primary300));
+                          }),
                       SizedBox(
-                        width: 120.w,
-                        child: const Row(
+                        width: 130.w,
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
+                            // if the value is zero change the color and make it untappable
+                            // increase space between button and widgets
+                            // when you tap the InkWell in executes a fn that adds tha item to the cart with the price
+                            // the fn should be a notifier
                             CustomIconButton(
                               color: Colors.white,
                               icon: Icons.remove,
                               borderColor: Colors.black,
                               borderWidth: 1.0,
+                              onPressed: () {
+                                if (itemCountNotifier.value > 1) {
+                                  itemCountNotifier.value--;
+                                }
+                              },
                             ),
+                            ValueListenableBuilder(
+                                valueListenable: itemCountNotifier,
+                                builder: (context, value, _) {
+                                  return Text('$value',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20.sp,
+                                          color: Colors.black));
+                                }),
                             CustomIconButton(
                               color: Colors.white,
                               icon: Icons.add,
                               borderColor: Colors.black,
                               borderWidth: 1.0,
-                            )
+                              onPressed: () {
+                                itemCountNotifier.value++;
+                              },
+                            ),
                           ],
                         ),
                       ),
                     ],
                   ),
-                            SizedBox(
+                  SizedBox(
                     height: 20.h,
                   ),
-                  Text(widget.menuItem.description, style: TextStyle(
-                    height: 1.2,
-                    fontSize: 18.sp,
-                    color: AppColors.black500,
-                    
-                  ),)
+                  Text(
+                    widget.menuItem.description,
+                    style: TextStyle(
+                      height: 1.2,
+                      fontSize: 18.sp,
+                      color: AppColors.black500,
+                    ),
+                  )
                 ],
               )
             ],
           ),
-          SizedBox(height: 90.h,),
+          SizedBox(
+            height: 70.h,
+          ),
           CustomButton(
               onPressed: () {
                 print('');
@@ -142,4 +182,3 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
     ));
   }
 }
-

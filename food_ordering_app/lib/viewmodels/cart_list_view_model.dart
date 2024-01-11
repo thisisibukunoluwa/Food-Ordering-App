@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 
 import '../models/cart_product.dart';
-import '../models/product.dart';
+// import '../models/product.dart';
 
 class CartListValueNotifier extends ValueNotifier<List<CartProduct>> {
     CartListValueNotifier(this._value) : super(_value);

@@ -1,5 +1,4 @@
 import 'package:flutter/foundation.dart';
-import 'package:food_ordering_app/features/restaurants/restaurants_view.dart';
 import 'package:food_ordering_app/models/restaurant_model.dart';
 import 'package:food_ordering_app/repositories/restaurant_repository.dart';
 

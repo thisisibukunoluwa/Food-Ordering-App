@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart' show timeDilation;
+// import 'package:flutter/scheduler.dart' show timeDilation;
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_ordering_app/models/restaurant_model.dart';
 import 'package:food_ordering_app/services/navigation_service.dart';

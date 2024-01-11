@@ -44,14 +44,14 @@ class ProfileView extends StatelessWidget {
                         Text("Ibukunoluwa Akintobi",
                           style: TextStyle(
                               fontSize: 17.sp, fontWeight: FontWeight.w500) ),
-                        Row(
+                        const Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Text("102 St Ports, New York"),
+                            Text("102 St Ports, New York"),
                             Icon(Icons.keyboard_arrow_down_rounded),
                           ],
                         ),
-                        Text("458-419-1891")
+                        const Text("458-419-1891")
                       ],
                     ),
               ],
@@ -68,14 +68,14 @@ class ProfileView extends StatelessWidget {
                   children: [
                   SvgPicture.asset(Assets.svgs.creditCard,
                       semanticsLabel: 'Card'),
-                    SizedBox(width: 30,),
+                    const SizedBox(width: 30,),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text("Payment methods",  style: TextStyle(
                               fontSize: 17.sp, fontWeight: FontWeight.w400)), 
-                      Text("2 cards added")
+                      const Text("2 cards added")
                     ],
                   )
                 ]),
@@ -83,7 +83,7 @@ class ProfileView extends StatelessWidget {
                     children: [
                        SvgPicture.asset(Assets.svgs.address,
                       semanticsLabel: 'Address'),
-                      SizedBox(
+                      const SizedBox(
                     width: 30,
                   ),
                    Column(
@@ -92,7 +92,7 @@ class ProfileView extends StatelessWidget {
                     children: [
                       Text("Delivery address",  style: TextStyle(
                               fontSize: 17.sp, fontWeight: FontWeight.w400)),
-                      Text("102nd St Ports, New York")
+                      const Text("102nd St Ports, New York")
                     ],
                   )
                 ]),
@@ -100,7 +100,7 @@ class ProfileView extends StatelessWidget {
                   children: [
                    SvgPicture.asset(Assets.svgs.settings,
                       semanticsLabel: 'Settings'),
-                      SizedBox(
+                      const SizedBox(
                     width: 30,
                   ),
             Column(
@@ -109,7 +109,7 @@ class ProfileView extends StatelessWidget {
                     children: [
                       Text("Settings",  style: TextStyle(
                               fontSize: 17.sp, fontWeight: FontWeight.w400)),
-                      Text("Notification | FAQ | Contact")
+                      const Text("Notification | FAQ | Contact")
                     ],
                   )
                 ]),
@@ -121,3 +121,4 @@ class ProfileView extends StatelessWidget {
     ));
   }
 }
+

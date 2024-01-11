@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_ordering_app/features/menulisting/product_category_section.dart';
@@ -118,7 +119,9 @@ class _ProductListingViewAppBar extends StatelessWidget {
             background: Stack(
               children: [
                 Transform.scale(
-                    scale: 2, child: Image.network(restaurant.image)),
+                    scale: 2, child: CachedNetworkImage(
+                      imageUrl: restaurant.image
+                    )),
                 const Positioned(
                   left:20,
                   top:70,
@@ -147,3 +150,6 @@ class _ProductListingViewAppBar extends StatelessWidget {
 //TODO
 
 // add error handling and loading state
+
+
+// make the product listing view sticky properly 
