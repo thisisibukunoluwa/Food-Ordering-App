@@ -1,26 +1,30 @@
-// import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:food_ordering_app/features/bag/cart_item.dart';
+import 'package:food_ordering_app/providers/view_model_provider.dart';
+import 'package:food_ordering_app/viewmodels/cart_list_view_model.dart';
 
-// class CartView extends StatelessWidget {
-//   const CartView({super.key});
+import '../../models/cart_product.dart';
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('The Pizza Place'),
-//       ),
-//       body: ValueListenableBuilder<List<CartProduct>>(
-//         valueListenable: cartListViewModel.cartProductsNotifier,
-//         builder: (context, products, _) => ListView.builder(
-//           itemBuilder: (context, i) => ProductItem(
-//             cartProduct: products[i],
-//             key: ValueKey(products[i].product.id),
-//           ),
-//           itemCount: products.length,
-//         ),
-//       ),
-//     );
-//   }
-// }
+class CartView extends StatelessWidget {
+  const CartView({super.key});
 
-
+  @override
+  Widget build(BuildContext context) {
+    final cartListViewModel = ViewModelProvider.read<CartListViewModel>(context);
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('The Pizza Place'),
+      ),
+      body: ValueListenableBuilder<List<CartProduct>>(
+        valueListenable: cartListViewModel.cartProductsNotifier,
+        builder: (context, products, _) => ListView.builder(
+          itemBuilder: (context, i) => CartItem(
+            cartProduct: products[i],
+            key: ValueKey(products[i].product.id),
+          ),
+          itemCount: products.length,
+        ),
+      ),
+    );
+  }
+}

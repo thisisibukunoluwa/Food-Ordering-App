@@ -1,12 +1,11 @@
-
-
 import 'package:flutter/material.dart';
 
 import '../models/cart_product.dart';
 // import '../models/product.dart';
 
+// this is the ValueNotifier to update the value of the List<CartProduct>
 class CartListValueNotifier extends ValueNotifier<List<CartProduct>> {
-    CartListValueNotifier(this._value) : super(_value);
+  CartListValueNotifier(this._value) : super(_value);
 
   final List<CartProduct> _value;
 
@@ -46,6 +45,8 @@ class CartListValueNotifier extends ValueNotifier<List<CartProduct>> {
   }
 }
 
+
+// from the CartlistViewModel, the 
 class CartListViewModel {
   /// cart count notifier
   final cartCountNotifier = ValueNotifier<int>(0);
@@ -76,4 +77,17 @@ class CartListViewModel {
   }
 }
 
+// the cart list view model is what we are exposing publicly to use 
+
+// bag will be a list of CartProduct List<CartProduct> each is a cart product and each is their type 
+
+// in the product detail page, we can either increment or decrement this value
+
+
+// we open the productdetail page , press the increment button , when we do we increment the count property of the CartProduct class 
+   // to do this , the method from the button pairs receive the CartProduct object , then we can increment or decrement the value
+  
+// when we now press the add to bag, we now append the cart product value to our List<CartProduct>
+
+// - we have to make sure we don't add it twice , so we check isAdded boolean 
 
