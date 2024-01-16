@@ -15,16 +15,21 @@ class CartView extends StatelessWidget {
       appBar: AppBar(
         title: const Text('The Pizza Place'),
       ),
-      body: ValueListenableBuilder<List<CartProduct>>(
-        valueListenable: cartListViewModel.cartProductsNotifier,
-        builder: (context, products, _) => ListView.builder(
-          itemBuilder: (context, i) => CartItem(
-            cartProduct: products[i],
-            key: ValueKey(products[i].product.id),
-          ),
-          itemCount: products.length,
-        ),
-      ),
+      body: ListView(
+        children: [
+          ValueListenableBuilder(
+              valueListenable: cartListViewModel.cartProductsNotifier,
+              builder: (context, products, _) => ListView.builder(
+                itemBuilder: (context, i) => CartItem(
+                  cartProduct: products[i],
+                  key: ValueKey(products[i].product.id),
+                ),
+                itemCount: products.length,
+              ),
+            ),
+        ],
+      )
     );
   }
 }
+

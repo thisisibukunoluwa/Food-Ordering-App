@@ -2,10 +2,15 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_ordering_app/core/constants/colors.dart';
+import 'package:food_ordering_app/models/cart_product.dart';
+import 'package:food_ordering_app/models/product.dart';
 import 'package:food_ordering_app/models/restaurant_model.dart';
 import 'package:food_ordering_app/widgets/custom_button.dart';
 import 'package:food_ordering_app/widgets/custom_icon_button.dart';
 import 'package:food_ordering_app/widgets/navback_button.dart';
+import 'package:uuid/uuid.dart';
+import '../../providers/view_model_provider.dart';
+import '../../viewmodels/cart_list_view_model.dart';
 
 class ProductDetailsView extends StatefulWidget {
   final MenuItem menuItem;
@@ -21,16 +26,33 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
   bool isSelected = false;
   int? _value = 1;
   List<String> sizes = ['X-Large', 'Large', 'Small'];
-  final itemCountNotifier = ValueNotifier<int>(1);
+
+  final isAddedToCartNotifier = ValueNotifier<bool>(false);
 
   @override
   void dispose() {
-    itemCountNotifier.dispose();
+    isAddedToCartNotifier.dispose();
+    final cartListViewModel = ViewModelProvider.read<CartListViewModel>(context);
+    cartListViewModel.cartCountNotifier.dispose();
     super.dispose();
   }
 
+  // it accesses and searches for the particular item from the cartsProductNotifier
+
   @override
   Widget build(BuildContext context) {
+    final cartListViewModel =
+        ViewModelProvider.read<CartListViewModel>(context);
+
+    CartProduct currentProduct = CartProduct(
+      product: Product(widget.menuItem.id,
+          image: widget.menuItem.image,
+          title: widget.menuItem.title,
+          price: widget.menuItem.price,
+          isAddedToCart: isAddedToCartNotifier.value),
+      count: cartListViewModel.cartCountNotifier.value,
+    );
+
     return Scaffold(
         body: Padding(
       padding: EdgeInsets.only(left: 20.w, right: 20.w, top: 15.2.w, bottom: 0),
@@ -101,7 +123,7 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       ValueListenableBuilder(
-                          valueListenable: itemCountNotifier,
+                          valueListenable: cartListViewModel.cartCountNotifier,
                           builder: (context, value, _) {
                             return Text(
                                 '\$${(widget.menuItem.price * value).toStringAsFixed(2)}',
@@ -115,39 +137,59 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            // if the value is zero change the color and make it untappable
-                            // increase space between button and widgets
-                            // when you tap the InkWell in executes a fn that adds tha item to the cart with the price
-                            // the fn should be a notifier
-                            CustomIconButton(
-                              color: Colors.white,
-                              icon: Icons.remove,
-                              borderColor: Colors.black,
-                              borderWidth: 1.0,
-                              onPressed: () {
-                                if (itemCountNotifier.value > 1) {
-                                  itemCountNotifier.value--;
-                                }
-                              },
-                            ),
                             ValueListenableBuilder(
-                                valueListenable: itemCountNotifier,
-                                builder: (context, value, _) {
-                                  return Text('$value',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 20.sp,
-                                          color: Colors.black));
-                                }),
-                            CustomIconButton(
-                              color: Colors.white,
-                              icon: Icons.add,
-                              borderColor: Colors.black,
-                              borderWidth: 1.0,
-                              onPressed: () {
-                                itemCountNotifier.value++;
-                              },
-                            ),
+                                valueListenable: isAddedToCartNotifier,
+                                builder: (context, isAddedToCart, _) {
+                                  return currentProduct.product.isAddedToCart
+                                      ? Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            CustomIconButton(
+                                              color: Colors.white,
+                                              icon: Icons.remove,
+                                              borderColor: Colors.black,
+                                              borderWidth: 1.0,
+                                              onPressed: () {
+                                                cartListViewModel
+                                                    .decrementCount(
+                                                        currentProduct);
+                                              },
+                                            ),
+                                            ValueListenableBuilder(
+                                                valueListenable:
+                                                    cartListViewModel
+                                                        .cartCountNotifier,
+                                                builder: (context, value, _) {
+                                                  return Text(
+                                                    '$value',
+                                                    style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 17.sp,
+                                                    ),
+                                                  );
+                                                }),
+                                            CustomIconButton(
+                                              color: Colors.white,
+                                              icon: Icons.add,
+                                              borderColor: Colors.black,
+                                              borderWidth: 1.0,
+                                              onPressed: () {
+                                                cartListViewModel
+                                                    .incrementCount(
+                                                        currentProduct);
+                                              },
+                                            ),
+                                          ],
+                                        )
+                                      : Text('Not Added',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20.sp,
+                                              color: AppColors.primary300));
+                                })
                           ],
                         ),
                       ),
@@ -173,7 +215,9 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
           ),
           CustomButton(
               onPressed: () {
-                print('');
+                isAddedToCartNotifier.value = true;
+                cartListViewModel
+                    .addToCart(CartProduct(product: currentProduct.product));
               },
               buttonText: 'Add to bag',
               color: Colors.black)
@@ -182,3 +226,6 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
     ));
   }
 }
+
+
+// wehn it has been added to bag , deactivate the button and show added as the text 

@@ -5,6 +5,7 @@ import 'package:food_ordering_app/features/startup/startup_view.dart';
 import 'package:food_ordering_app/providers/view_model_provider.dart';
 import 'package:food_ordering_app/services/navigation_service.dart';
 import 'package:food_ordering_app/services/shared_preferences_service.dart';
+import 'package:food_ordering_app/viewmodels/cart_list_view_model.dart';
 
 import 'viewmodels/restaurant_view_model.dart';
 
@@ -22,8 +23,10 @@ class FoodrApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: const Size(393, 852),
       child: ViewModelProvider(
-          viewModel: RestaurantViewModel()
-        , child: MaterialApp(
+        viewModel: CartListViewModel(),
+        child: ViewModelProvider(
+          viewModel: RestaurantViewModel(),
+          child: MaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'Foodr',
             theme: ThemeData(primarySwatch: Colors.blue),
@@ -31,6 +34,7 @@ class FoodrApp extends StatelessWidget {
             onGenerateRoute: Routes.generateRoute,
             navigatorKey: navigationService.navigatorKey,
           ),
+        )
       )
     );
   }
